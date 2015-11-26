@@ -1,0 +1,373 @@
+Analysis & Synthesis report for lab8
+Tue Nov 24 23:12:52 2015
+Quartus II 64-Bit Version 15.0.0 Build 145 04/22/2015 Patches 0.01we SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Messages
+  6. Analysis & Synthesis Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2015 Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus II License Agreement,
+the Altera MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Altera and sold by Altera or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+
+
+
++------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                                   ;
++------------------------------------+-----------------------------------------------------------+
+; Analysis & Synthesis Status        ; Failed - Tue Nov 24 23:12:52 2015                         ;
+; Quartus II 64-Bit Version          ; 15.0.0 Build 145 04/22/2015 Patches 0.01we SJ Web Edition ;
+; Revision Name                      ; lab8                                                      ;
+; Top-level Entity Name              ; lab8                                                      ;
+; Family                             ; Cyclone IV E                                              ;
+; Total logic elements               ; N/A until Partition Merge                                 ;
+;     Total combinational functions  ; N/A until Partition Merge                                 ;
+;     Dedicated logic registers      ; N/A until Partition Merge                                 ;
+; Total registers                    ; N/A until Partition Merge                                 ;
+; Total pins                         ; N/A until Partition Merge                                 ;
+; Total virtual pins                 ; N/A until Partition Merge                                 ;
+; Total memory bits                  ; N/A until Partition Merge                                 ;
+; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                                 ;
+; Total PLLs                         ; N/A until Partition Merge                                 ;
++------------------------------------+-----------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP4CE115F29C7      ;                    ;
+; Top-level entity name                                                      ; lab8               ; lab8               ;
+; Family name                                                                ; Cyclone IV E       ; Cyclone V          ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                 ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM Block Balancing                                                   ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; On                 ; On                 ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization During Synthesis                              ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
+; Synthesis Seed                                                             ; 1                  ; 1                  ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 4           ;
+; Maximum allowed            ; 2           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processors 2-4         ;   0.0%      ;
++----------------------------+-------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 64-Bit Analysis & Synthesis
+    Info: Version 15.0.0 Build 145 04/22/2015 Patches 0.01we SJ Web Edition
+    Info: Processing started: Tue Nov 24 23:12:36 2015
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off lab8 -c lab8
+Info (11104): Parallel Compilation has detected 4 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 2 of the 2 physical processors detected instead.
+Info (12021): Found 1 design units, including 1 entities, in source file power_angle_reg_p1.sv
+    Info (12023): Found entity 1: power_angle_reg_p1
+Info (12021): Found 1 design units, including 1 entities, in source file p1_weapon_state_machine.sv
+    Info (12023): Found entity 1: p1_weapon_state_machine
+Info (12021): Found 1 design units, including 1 entities, in source file font_rom_32_bit.sv
+    Info (12023): Found entity 1: font_rom_32_bit
+Info (12021): Found 1 design units, including 1 entities, in source file font_rom.sv
+    Info (12023): Found entity 1: font_rom
+Info (12021): Found 1 design units, including 1 entities, in source file ch1.sv
+    Info (12023): Found entity 1: ch1
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/nios_system.v
+    Info (12023): Found entity 1: nios_system
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/altera_reset_controller.v
+    Info (12023): Found entity 1: altera_reset_controller
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/altera_reset_synchronizer.v
+    Info (12023): Found entity 1: altera_reset_synchronizer
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/nios_system_irq_mapper.sv
+    Info (12023): Found entity 1: nios_system_irq_mapper
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/nios_system_mm_interconnect_0.v
+    Info (12023): Found entity 1: nios_system_mm_interconnect_0
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/nios_system_mm_interconnect_0_avalon_st_adapter.v
+    Info (12023): Found entity 1: nios_system_mm_interconnect_0_avalon_st_adapter
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/nios_system_mm_interconnect_0_avalon_st_adapter_error_adapter_0.sv
+    Info (12023): Found entity 1: nios_system_mm_interconnect_0_avalon_st_adapter_error_adapter_0
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/altera_avalon_st_handshake_clock_crosser.v
+    Info (12023): Found entity 1: altera_avalon_st_handshake_clock_crosser
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/altera_avalon_st_clock_crosser.v
+    Info (12023): Found entity 1: altera_avalon_st_clock_crosser
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/altera_avalon_st_pipeline_base.v
+    Info (12023): Found entity 1: altera_avalon_st_pipeline_base
+Info (12021): Found 2 design units, including 2 entities, in source file nios_system/synthesis/submodules/altera_merlin_arbitrator.sv
+    Info (12023): Found entity 1: altera_merlin_arbitrator
+    Info (12023): Found entity 2: altera_merlin_arb_adder
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/nios_system_mm_interconnect_0_rsp_mux_001.sv
+    Info (12023): Found entity 1: nios_system_mm_interconnect_0_rsp_mux_001
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/nios_system_mm_interconnect_0_rsp_mux.sv
+    Info (12023): Found entity 1: nios_system_mm_interconnect_0_rsp_mux
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/nios_system_mm_interconnect_0_rsp_demux_001.sv
+    Info (12023): Found entity 1: nios_system_mm_interconnect_0_rsp_demux_001
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/nios_system_mm_interconnect_0_rsp_demux.sv
+    Info (12023): Found entity 1: nios_system_mm_interconnect_0_rsp_demux
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/nios_system_mm_interconnect_0_cmd_mux_001.sv
+    Info (12023): Found entity 1: nios_system_mm_interconnect_0_cmd_mux_001
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/nios_system_mm_interconnect_0_cmd_mux.sv
+    Info (12023): Found entity 1: nios_system_mm_interconnect_0_cmd_mux
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/nios_system_mm_interconnect_0_cmd_demux_001.sv
+    Info (12023): Found entity 1: nios_system_mm_interconnect_0_cmd_demux_001
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/nios_system_mm_interconnect_0_cmd_demux.sv
+    Info (12023): Found entity 1: nios_system_mm_interconnect_0_cmd_demux
+Info (12021): Found 2 design units, including 2 entities, in source file nios_system/synthesis/submodules/nios_system_mm_interconnect_0_router_003.sv
+    Info (12023): Found entity 1: nios_system_mm_interconnect_0_router_003_default_decode
+    Info (12023): Found entity 2: nios_system_mm_interconnect_0_router_003
+Info (12021): Found 2 design units, including 2 entities, in source file nios_system/synthesis/submodules/nios_system_mm_interconnect_0_router_002.sv
+    Info (12023): Found entity 1: nios_system_mm_interconnect_0_router_002_default_decode
+    Info (12023): Found entity 2: nios_system_mm_interconnect_0_router_002
+Info (12021): Found 2 design units, including 2 entities, in source file nios_system/synthesis/submodules/nios_system_mm_interconnect_0_router_001.sv
+    Info (12023): Found entity 1: nios_system_mm_interconnect_0_router_001_default_decode
+    Info (12023): Found entity 2: nios_system_mm_interconnect_0_router_001
+Info (12021): Found 2 design units, including 2 entities, in source file nios_system/synthesis/submodules/nios_system_mm_interconnect_0_router.sv
+    Info (12023): Found entity 1: nios_system_mm_interconnect_0_router_default_decode
+    Info (12023): Found entity 2: nios_system_mm_interconnect_0_router
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/altera_avalon_sc_fifo.v
+    Info (12023): Found entity 1: altera_avalon_sc_fifo
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/altera_merlin_slave_agent.sv
+    Info (12023): Found entity 1: altera_merlin_slave_agent
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/altera_merlin_burst_uncompressor.sv
+    Info (12023): Found entity 1: altera_merlin_burst_uncompressor
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/altera_merlin_master_agent.sv
+    Info (12023): Found entity 1: altera_merlin_master_agent
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/altera_merlin_slave_translator.sv
+    Info (12023): Found entity 1: altera_merlin_slave_translator
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/altera_merlin_master_translator.sv
+    Info (12023): Found entity 1: altera_merlin_master_translator
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/nios_system_timer_0.v
+    Info (12023): Found entity 1: nios_system_timer_0
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/nios_system_sysid_qsys_0.v
+    Info (12023): Found entity 1: nios_system_sysid_qsys_0
+Info (12021): Found 4 design units, including 4 entities, in source file nios_system/synthesis/submodules/nios_system_sdram_pll.v
+    Info (12023): Found entity 1: nios_system_sdram_pll_dffpipe_l2c
+    Info (12023): Found entity 2: nios_system_sdram_pll_stdsync_sv6
+    Info (12023): Found entity 3: nios_system_sdram_pll_altpll_lqa2
+    Info (12023): Found entity 4: nios_system_sdram_pll
+Info (12021): Found 2 design units, including 2 entities, in source file nios_system/synthesis/submodules/nios_system_sdram.v
+    Info (12023): Found entity 1: nios_system_sdram_input_efifo_module
+    Info (12023): Found entity 2: nios_system_sdram
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/nios_system_power_angle.v
+    Info (12023): Found entity 1: nios_system_power_angle
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/nios_system_p1_old_pos_to_sw.v
+    Info (12023): Found entity 1: nios_system_p1_old_pos_to_sw
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/nios_system_otg_hpi_data.v
+    Info (12023): Found entity 1: nios_system_otg_hpi_data
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/nios_system_otg_hpi_cs.v
+    Info (12023): Found entity 1: nios_system_otg_hpi_cs
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/nios_system_otg_hpi_address.v
+    Info (12023): Found entity 1: nios_system_otg_hpi_address
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/nios_system_onchip_memory2_0.v
+    Info (12023): Found entity 1: nios_system_onchip_memory2_0
+Info (12021): Found 21 design units, including 21 entities, in source file nios_system/synthesis/submodules/nios_system_nios2_qsys_0.v
+    Info (12023): Found entity 1: nios_system_nios2_qsys_0_register_bank_a_module
+    Info (12023): Found entity 2: nios_system_nios2_qsys_0_register_bank_b_module
+    Info (12023): Found entity 3: nios_system_nios2_qsys_0_nios2_oci_debug
+    Info (12023): Found entity 4: nios_system_nios2_qsys_0_ociram_sp_ram_module
+    Info (12023): Found entity 5: nios_system_nios2_qsys_0_nios2_ocimem
+    Info (12023): Found entity 6: nios_system_nios2_qsys_0_nios2_avalon_reg
+    Info (12023): Found entity 7: nios_system_nios2_qsys_0_nios2_oci_break
+    Info (12023): Found entity 8: nios_system_nios2_qsys_0_nios2_oci_xbrk
+    Info (12023): Found entity 9: nios_system_nios2_qsys_0_nios2_oci_dbrk
+    Info (12023): Found entity 10: nios_system_nios2_qsys_0_nios2_oci_itrace
+    Info (12023): Found entity 11: nios_system_nios2_qsys_0_nios2_oci_td_mode
+    Info (12023): Found entity 12: nios_system_nios2_qsys_0_nios2_oci_dtrace
+    Info (12023): Found entity 13: nios_system_nios2_qsys_0_nios2_oci_compute_input_tm_cnt
+    Info (12023): Found entity 14: nios_system_nios2_qsys_0_nios2_oci_fifo_wrptr_inc
+    Info (12023): Found entity 15: nios_system_nios2_qsys_0_nios2_oci_fifo_cnt_inc
+    Info (12023): Found entity 16: nios_system_nios2_qsys_0_nios2_oci_fifo
+    Info (12023): Found entity 17: nios_system_nios2_qsys_0_nios2_oci_pib
+    Info (12023): Found entity 18: nios_system_nios2_qsys_0_nios2_oci_im
+    Info (12023): Found entity 19: nios_system_nios2_qsys_0_nios2_performance_monitors
+    Info (12023): Found entity 20: nios_system_nios2_qsys_0_nios2_oci
+    Info (12023): Found entity 21: nios_system_nios2_qsys_0
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/nios_system_nios2_qsys_0_jtag_debug_module_sysclk.v
+    Info (12023): Found entity 1: nios_system_nios2_qsys_0_jtag_debug_module_sysclk
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/nios_system_nios2_qsys_0_jtag_debug_module_tck.v
+    Info (12023): Found entity 1: nios_system_nios2_qsys_0_jtag_debug_module_tck
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/nios_system_nios2_qsys_0_jtag_debug_module_wrapper.v
+    Info (12023): Found entity 1: nios_system_nios2_qsys_0_jtag_debug_module_wrapper
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/nios_system_nios2_qsys_0_oci_test_bench.v
+    Info (12023): Found entity 1: nios_system_nios2_qsys_0_oci_test_bench
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/nios_system_nios2_qsys_0_test_bench.v
+    Info (12023): Found entity 1: nios_system_nios2_qsys_0_test_bench
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/nios_system_new_pos_to_hw.v
+    Info (12023): Found entity 1: nios_system_new_pos_to_hw
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/nios_system_key2.v
+    Info (12023): Found entity 1: nios_system_key2
+Info (12021): Found 5 design units, including 5 entities, in source file nios_system/synthesis/submodules/nios_system_jtag_uart_0.v
+    Info (12023): Found entity 1: nios_system_jtag_uart_0_sim_scfifo_w
+    Info (12023): Found entity 2: nios_system_jtag_uart_0_scfifo_w
+    Info (12023): Found entity 3: nios_system_jtag_uart_0_sim_scfifo_r
+    Info (12023): Found entity 4: nios_system_jtag_uart_0_scfifo_r
+    Info (12023): Found entity 5: nios_system_jtag_uart_0
+Info (12021): Found 1 design units, including 1 entities, in source file nios_system/synthesis/submodules/nios_system_keycode.v
+    Info (12023): Found entity 1: nios_system_Keycode
+Info (12021): Found 1 design units, including 1 entities, in source file vga_controller.sv
+    Info (12023): Found entity 1: vga_controller
+Warning (10275): Verilog HDL Module Instantiation warning at lab8.sv(245): ignored dangling comma in List of Port Connections
+Info (12021): Found 1 design units, including 1 entities, in source file lab8.sv
+    Info (12023): Found entity 1: lab8
+Info (12021): Found 1 design units, including 1 entities, in source file hpi_io_intf.sv
+    Info (12023): Found entity 1: hpi_io_intf
+Info (12021): Found 1 design units, including 1 entities, in source file hexdriver.sv
+    Info (12023): Found entity 1: HexDriver
+Info (12021): Found 1 design units, including 1 entities, in source file color_mapper.sv
+    Info (12023): Found entity 1: color_mapper
+Info (12021): Found 1 design units, including 1 entities, in source file colortable.sv
+    Info (12023): Found entity 1: colortable
+Info (12021): Found 1 design units, including 1 entities, in source file ch2.sv
+    Info (12023): Found entity 1: ch2
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/15.0/lab9/ball_state_machine.sv
+    Info (12023): Found entity 1: ball_state_machine
+Info (12021): Found 1 design units, including 1 entities, in source file counter_reg.sv
+    Info (12023): Found entity 1: counter_reg
+Info (12021): Found 1 design units, including 1 entities, in source file game_state.sv
+    Info (12023): Found entity 1: game_state
+Info (12021): Found 1 design units, including 1 entities, in source file restart_sig_generator.sv
+    Info (12023): Found entity 1: restart_sig_generator
+Info (12021): Found 1 design units, including 1 entities, in source file p2_weapon_state_machine.sv
+    Info (12023): Found entity 1: p2_weapon_state_machine
+Info (12021): Found 1 design units, including 1 entities, in source file p1_attack_confirm.sv
+    Info (12023): Found entity 1: p1_attack_confirm
+Info (12021): Found 1 design units, including 1 entities, in source file p1_weapon_mode_container.sv
+    Info (12023): Found entity 1: p1_weapon_mode_container
+Info (12021): Found 1 design units, including 1 entities, in source file p2_attack_confirm.sv
+    Info (12023): Found entity 1: p2_attack_confirm
+Info (12021): Found 1 design units, including 1 entities, in source file p2_weapon_mode_container.sv
+    Info (12023): Found entity 1: p2_weapon_mode_container
+Warning (10236): Verilog HDL Implicit Net warning at lab8.sv(107): created implicit net for "old_pos_to_sw_wire"
+Warning (10236): Verilog HDL Implicit Net warning at lab8.sv(304): created implicit net for "ballsizesig"
+Warning (10037): Verilog HDL or VHDL warning at nios_system_nios2_qsys_0.v(1605): conditional expression evaluates to a constant
+Warning (10037): Verilog HDL or VHDL warning at nios_system_nios2_qsys_0.v(1607): conditional expression evaluates to a constant
+Warning (10037): Verilog HDL or VHDL warning at nios_system_nios2_qsys_0.v(1763): conditional expression evaluates to a constant
+Warning (10037): Verilog HDL or VHDL warning at nios_system_nios2_qsys_0.v(2587): conditional expression evaluates to a constant
+Warning (10037): Verilog HDL or VHDL warning at nios_system_sdram.v(316): conditional expression evaluates to a constant
+Warning (10037): Verilog HDL or VHDL warning at nios_system_sdram.v(326): conditional expression evaluates to a constant
+Warning (10037): Verilog HDL or VHDL warning at nios_system_sdram.v(336): conditional expression evaluates to a constant
+Warning (10037): Verilog HDL or VHDL warning at nios_system_sdram.v(680): conditional expression evaluates to a constant
+Critical Warning (10846): Verilog HDL Instantiation warning at lab8.sv(186): instance has no name
+Critical Warning (10846): Verilog HDL Instantiation warning at lab8.sv(232): instance has no name
+Error (10161): Verilog HDL error at Color_Mapper.sv(62): object "BallX" is not declared File: C:/altera/15.0/lab8/Color_Mapper.sv Line: 62
+Error (10161): Verilog HDL error at Color_Mapper.sv(63): object "BallY" is not declared File: C:/altera/15.0/lab8/Color_Mapper.sv Line: 63
+Error (10161): Verilog HDL error at Color_Mapper.sv(66): object "Ball_size" is not declared File: C:/altera/15.0/lab8/Color_Mapper.sv Line: 66
+Info (144001): Generated suppressed messages file C:/altera/15.0/lab8/lab8.map.smsg
+Error: Quartus II 64-Bit Analysis & Synthesis was unsuccessful. 3 errors, 13 warnings
+    Error: Peak virtual memory: 690 megabytes
+    Error: Processing ended: Tue Nov 24 23:12:53 2015
+    Error: Elapsed time: 00:00:17
+    Error: Total CPU time (on all processors): 00:00:37
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in C:/altera/15.0/lab8/lab8.map.smsg.
+
+

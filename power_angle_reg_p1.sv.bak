@@ -1,0 +1,68 @@
+module power_angle_reg_p1 (input frame_clk, Reset, input [7:0] keycode,
+									output [3:0] power, angle);
+
+
+	logic [3:0] power_sig, angle_sig;
+	
+	//h'1d:W, h'1b:S used for power
+	//h'15:q, h'24:e, used for angle adjustment
+	
+	always_ff @ (posedge frame_clk, posedge Reset)
+	begin
+		if(Reset)
+		begin
+			power_sig <= 4'b0;
+			angle_sig <= 4'b0;
+		end
+		else if (keycode==8'h1d)
+		begin
+			//power up
+			angle_sig <= angle_sig;
+			if(power_sig >=4'b7)
+				power_sig <= 4'b7;
+			else
+				power_sig <= power_sig +4'b1;
+		end
+		else if (keycode==8'h1b)
+		begin
+			//power down
+			angle_sig <= angle_sig;
+			if(power_sig ==4'b0)
+				power_sig <= 4'b0;
+			else
+				power_sig <= power_sig -1'b1;
+		end 
+		else if (keycode == 8'h15)
+		begin
+			//angle up
+			power_sig <= power_sig;
+			if(angle_sig >=4'b7)
+				angle_sig <= 4'b7;
+			else
+				angle_sig <= angle_sig +4'b1;
+		end
+		else if (keycode == 8'h24)
+		begin
+			//angle down
+			power_sig <= power_sig;
+			if(angle_sig ==4'b0)
+				angle_sig <= 4'b0;
+			else
+				angle_sig <= angle_sig -4'b1;
+		end
+		else
+		begin
+			power_sig <= power_sig;
+			angle_sig <= angle_sig;
+		end
+	end
+									
+
+
+
+
+
+
+
+
+endmodule

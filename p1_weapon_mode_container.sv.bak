@@ -1,0 +1,2 @@
+module p1_weapon_mode_container(input frame_clk, Reset, is_in_turn, 
+											output weapon_mode);

@@ -1,0 +1,103 @@
+
+
+module  ch1 ( input Reset, frame_clk, input  [7:0] keycode,
+               output [9:0]  ch1X, ch1Y, chsizeX, chsizeY );
+    
+    logic [9:0] X_POS, X_Motion, Y_POS, Y_Motion, ch_sizeX,ch_sizeY;
+	 
+    parameter [9:0] X_Center=320;  // Center position on the X axis
+    parameter [9:0] Y_Center=240;  // Center position on the Y axis
+    parameter [9:0] X_Min=0;       // Leftmost point on the X axis
+    parameter [9:0] X_Max=639;     // Rightmost point on the X axis
+    parameter [9:0] Y_Min=0;       // Topmost point on the Y axis
+    parameter [9:0] Y_Max=479;     // Bottommost point on the Y axis
+    parameter [9:0] X_Step=3;      // Step size on the X axis
+    parameter [9:0] Y_Step=3;      // Step size on the Y axis
+	
+	 assign ch_sizeY = 24;
+    assign ch_sizeX = 16;  // assigns the value 4 as a 10-digit binary number, ie "0000000100"
+   
+    always_ff @ (posedge Reset or posedge frame_clk )
+    begin: Move_Character
+        if (Reset)  // Asynchronous Reset
+        begin 
+            Y_Motion <= 10'd0; //Y_Step;
+				X_Motion <= 10'd0; //X_Step;
+				Y_POS <= 10'd80;
+				X_POS <= X_Center;
+        end
+           
+        else 
+        begin 
+				 if ( (Y_POS + ch_sizeY) >= Y_Max )  // Ball is at the bottom edge, BOUNCE!
+					  begin
+					  Y_Motion <= (~ (Y_Step) + 1'b1);  // 2's complement.
+					  X_Motion <= 10'b0;
+					  end
+				 else if ( (Y_POS - ch_sizeY) <= Y_Min )  // Ball is at the top edge, BOUNCE!
+				 begin
+					  Y_Motion <= Y_Step;
+					  X_Motion <= 10'b0;
+					  end    
+				else if ( (X_POS + ch_sizeX) >= X_Max )  // Ball is at the rightmost edge, BOUNCE!
+					  begin
+					  X_Motion <= (~ (X_Step) + 1'b1);  // 2's complement.
+					  Y_Motion <= 10'b0;
+					  end
+				 else if ( (X_POS - ch_sizeX) <= X_Min )  // Ball is at the leftmost edge, BOUNCE!
+				 begin
+					  X_Motion <= X_Step;
+						Y_Motion <= 10'b0;
+				 end
+				 else 
+					begin
+				   Y_Motion <= Y_Motion;  // Ball is somewhere in the middle, don't bounce, just keep moving
+					  X_Motion <= X_Motion;  // Ball is somewhere in the middle, don't bounce, just keep moving
+					  
+						case (keycode)
+							8'h001A : 
+								begin
+								 Y_Motion <= (~ (Y_Step) + 1'b1);	//W
+								 X_Motion <= 10'b0;
+								end 
+							8'h0004 :
+								 begin
+								 X_Motion <= (~ (X_Step) + 1'b1); // A
+								 Y_Motion <=10'b0;
+								 end
+							8'h0016 : 
+								begin
+								 Y_Motion <= Y_Step ;// S
+								  X_Motion <= 10'b0; 
+								end 
+							8'h0007 :
+								begin
+								X_Motion <= X_Step;// D
+								 Y_Motion <=10'b0;
+								 end
+							default : 
+								begin
+								Y_Motion <= 10'd0 ;// do nothing
+								X_Motion <= 10'd0;
+								end
+						endcase
+					  end
+					  
+		 
+				 Y_POS <= (Y_POS + Y_Motion);  // Update ball position
+				 X_POS <= (X_POS + X_Motion);
+			
+			
+			
+		end  
+    end
+       
+    assign ch1X = X_POS;
+   
+    assign ch1Y = Y_POS;
+   
+    assign chsizeX = ch_sizeX;
+	 assign chsizeY = ch_sizeY;
+    
+
+endmodule

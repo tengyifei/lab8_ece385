@@ -1,0 +1,13 @@
+module colortable (input [2:0] color, output [7;0] red,green,blue);
+
+
+
+
+
+
+
+
+
+endmodule
+
+

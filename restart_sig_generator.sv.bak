@@ -1,0 +1,10 @@
+module restart_sig_generator (input frame_clk, Reset,
+										input [7:0] keycode,
+									   output restart	);
+										
+										
+										
+										
+										
+										
+endmodule

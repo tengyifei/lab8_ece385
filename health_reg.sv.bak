@@ -1,0 +1,3 @@
+module health_reg (input frame_clk, Reset, initialize, 
+						 input [6:0] harm,
+						 )

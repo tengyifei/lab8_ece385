@@ -1,0 +1,2 @@
+module attack_confirm(input [7:0] keycode,
+							 input Reset, frame_clk, input is_in_turn);
