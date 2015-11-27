@@ -1,4 +1,6 @@
 	nios_system u0 (
+		.ball1_pos_export        (<connected-to-ball1_pos_export>),        //        ball1_pos.export
+		.ball2_pos_export        (<connected-to-ball2_pos_export>),        //        ball2_pos.export
 		.clk_clk                 (<connected-to-clk_clk>),                 //              clk.clk
 		.key2_wire_export        (<connected-to-key2_wire_export>),        //        key2_wire.export
 		.key3_wire_export        (<connected-to-key3_wire_export>),        //        key3_wire.export
@@ -11,6 +13,7 @@
 		.otg_hpi_r_export        (<connected-to-otg_hpi_r_export>),        //        otg_hpi_r.export
 		.otg_hpi_w_export        (<connected-to-otg_hpi_w_export>),        //        otg_hpi_w.export
 		.p1_old_pos_to_sw_export (<connected-to-p1_old_pos_to_sw_export>), // p1_old_pos_to_sw.export
+		.p2_old_pos_to_sw_export (<connected-to-p2_old_pos_to_sw_export>), // p2_old_pos_to_sw.export
 		.power_angle_export      (<connected-to-power_angle_export>),      //      power_angle.export
 		.reset_reset_n           (<connected-to-reset_reset_n>),           //            reset.reset_n
 		.sdram_clk_clk           (<connected-to-sdram_clk_clk>),           //        sdram_clk.clk
@@ -23,8 +26,6 @@
 		.sdram_wire_dqm          (<connected-to-sdram_wire_dqm>),          //                 .dqm
 		.sdram_wire_ras_n        (<connected-to-sdram_wire_ras_n>),        //                 .ras_n
 		.sdram_wire_we_n         (<connected-to-sdram_wire_we_n>),         //                 .we_n
-		.timer_0_irq_irq         (<connected-to-timer_0_irq_irq>),         //      timer_0_irq.irq
-		.vsync_export            (<connected-to-vsync_export>),            //            vsync.export
-		.p2_old_pos_to_sw_export (<connected-to-p2_old_pos_to_sw_export>)  // p2_old_pos_to_sw.export
+		.vsync_export            (<connected-to-vsync_export>)             //            vsync.export
 	);
 

@@ -4,9 +4,10 @@ module p1_weapon_mode_container(input frame_clk, Reset, is_in_turn,
 
 
 	logic weapon_mode_internal;//act as the internal register
+	
 
 	
-	always_ff @(posedge frame_clk, posedge Reset)
+	always_ff @(posedge keycode[2], posedge Reset)
 	begin
 		if(Reset)
 			weapon_mode_internal = 1'b0;
@@ -16,7 +17,7 @@ module p1_weapon_mode_container(input frame_clk, Reset, is_in_turn,
 				begin
 					if(is_run)
 						weapon_mode_internal = weapon_mode_internal;
-					else
+					else 
 						weapon_mode_internal = ~weapon_mode_internal;
 				end
 			else

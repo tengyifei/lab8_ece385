@@ -1,14 +1,14 @@
-Analysis & Synthesis Status : Failed - Tue Nov 24 23:12:52 2015
+Analysis & Synthesis Status : Successful - Thu Nov 26 17:42:52 2015
 Quartus II 64-Bit Version : 15.0.0 Build 145 04/22/2015 Patches 0.01we SJ Web Edition
 Revision Name : lab8
 Top-level Entity Name : lab8
 Family : Cyclone IV E
-Total logic elements : N/A until Partition Merge
-    Total combinational functions : N/A until Partition Merge
-    Dedicated logic registers : N/A until Partition Merge
-Total registers : N/A until Partition Merge
-Total pins : N/A until Partition Merge
-Total virtual pins : N/A until Partition Merge
-Total memory bits : N/A until Partition Merge
-Embedded Multiplier 9-bit elements : N/A until Partition Merge
-Total PLLs : N/A until Partition Merge
+Total logic elements : 6,566
+    Total combinational functions : 5,384
+    Dedicated logic registers : 2,641
+Total registers : 2641
+Total pins : 142
+Total virtual pins : 0
+Total memory bits : 11,392
+Embedded Multiplier 9-bit elements : 8
+Total PLLs : 1

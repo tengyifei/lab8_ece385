@@ -16,6 +16,8 @@ module  ch1 ( input Reset, frame_clk, is_in_turn, input  [7:0] keycode,
 	
 	 assign ch_sizeY = 12;
     assign ch_sizeX = 12;  // assigns the value 4 as a 10-digit binary number, ie "0000000100"
+	 
+	 assign Y_POS = 10'd380;
    
     always_ff @ (posedge Reset or posedge frame_clk )
     begin: Move_Character
@@ -23,7 +25,6 @@ module  ch1 ( input Reset, frame_clk, is_in_turn, input  [7:0] keycode,
         begin 
            // Y_Motion <= 10'd0; //Y_Step;
 				X_Motion <= 10'd0; //X_Step;
-				Y_POS <= 10'd380;
 				X_POS <= 10'd100;
         end
            

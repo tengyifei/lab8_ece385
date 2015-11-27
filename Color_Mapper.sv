@@ -58,18 +58,22 @@ module  color_mapper ( input [9:0] Ball1X, Ball1Y,Ball2X, Ball2Y,
 	);
 	
 	
-    int BALL_DistX, BALL_DistY, ch1_DistX,ch1_DistY, ballsize,ch1sizeX,ch1sizeY;
-	 assign BALL_DistX = DrawX - BallX;
-    assign BALL_DistY = DrawY - BallY;
-    assign ch1_DistX = DrawX - ch1X;
+    int BALL1_DistX, BALL1_DistY,BALL2_DistX, BALL2_DistY, ch1_DistX,ch1_DistY, ball1size,ball2size,ch1sizeX,ch1sizeY;
+	 assign BALL1_DistX = DrawX - Ball1X;
+    assign BALL1_DistY = DrawY - Ball1Y;
+    assign BALL2_DistX = DrawX - Ball2X;
+    assign BALL2_DistY = DrawY - Ball2Y;
+ 
+	 assign ch1_DistX = DrawX - ch1X;
     assign ch1_DistY = DrawY - ch1Y;
-    assign ballsize = Ball_size;
+    assign ballsize = Ball1_size;
+	 assign bal2size = Ball2_size;
     assign ch1sizeX=ch1_sizeX;
 	 assign ch1sizeY=ch1_sizeY;
 	  
     always_comb
-    begin:Ball_on_proc
-        if ( ( BALL_DistX*BALL_DistX + BALL_DistY*BALL_DistY) <= (ballsize * ballsize) ) 
+    begin:Ball1_on_proc
+        if ( ( BALL1_DistX*BALL1_DistX + BALL_DistY*BALL_DistY) <= (ballsize * ballsize) ) 
             ball_on = 1'b1;
         else 
             ball_on = 1'b0;

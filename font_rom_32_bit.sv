@@ -1,29 +1,63 @@
 module font_rom_32_bit ( input [10:0]	addr1,addr2,
-						output [35:0]	data1, data2,
-					 );
+						output [383:0]	data1, data2				 );
+
 
 	parameter ADDR_WIDTH = 11;
-   parameter DATA_WIDTH =  36;
+   parameter DATA_WIDTH =  384;
 	logic [ADDR_WIDTH-1:0] addr_reg;
 				
 	// ROM definition				
 	parameter [0:2**ADDR_WIDTH-1][DATA_WIDTH-1:0] ROM = {
         
 		  
-36'b000000000000010010010000000000000000,
-36'b000000000000000100100000000000000000,
-36'b000000000000000101100000000000000000,
-36'b000000000000101101101000000000000000,
-36'b000000000000101100101000000000000000,
-36'b000000000000101100101000000000000000,
-36'b000000000000101100101000000000000000,
-36'b000000000000010010010000000000000000,
-36'b000000000000000010010000000000000000,
-36'b000000000000000100100000000000000000,
-36'b000000000000000100100000000000000000,
-36'b000000000000000100100100000000000000
-		  
-		  
+384'hfffffffefdfe958991b2a8aaf3f1f1ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff,
+
+384'hfffffffbfbfb7a6d7464555e9e6f1db19d84ebe3e3ffffffffffffffffffffffffffffffffffffffffffffffffffffff,
+
+384'hffffffffffffe2dfe162535a8f6823bba33089744ed6bfbdffffffffffffffffffffffffffffffffffffffffffffffff,
+
+384'hffffffffffffffffffb2abae71423a755026978d479c6c51fefbfbffffffffffffffffffffffffffffffffffffffffff,
+
+384'hfffffffffffffffffff4f3f45d372daf6012774f346f4e32f7eeecffffffffffffffffffffffffffffffffffffffffff,
+
+384'hfffffffffffffdfdfcf8f7f83629346a3a15ba7850ded0caffffffffffffffffffffffffffffffffffffffffffffffff,
+
+384'hfffffffdfcfac07c38b68b5e6f462f462a40b69f90faf7f3ffffffffffffffffffffffffffffffffffffffffffffffff,
+
+384'hffffffffffff9a8579331d1c954e10924c37e3dad7ffffffffffffffffffffffffffffffffffffffffffffffffffffff,
+
+384'hffffffb0a4a53c21242e161846241f6e3f3fc1b4a2ffffffffffffffffffffffffffffffffffffffffffffffffffffff,
+
+384'hecd5c3c157099d70166d592a49343a4a283e8f776fffffffffffffffffffffffffffffffffffffffffffffffffffffff,
+
+384'hf7efe9c56c36d47e02d09a08b9b33f653c286e504afaf9f9ffffffffffffffffffffffffffffffffffffffffffffffff,
+
+384'hfffffff8f6f6cfa48fa2581394501a4b2b31684c52fcfcfcffffffffffffffffffffffffffffffffffffffffffffffff,
+
+384'hfffffffffffff8f7f84c30374f333546272d8a767bffffffffffffffffffffffffffffffffffffffffffffffffffffff,
+
+384'hffffffffffffffffff79656875635588644a9c8a62f2f4eeffffffffffffffffffffffffffffffffffffffffffffffff,
+
+384'hffffffffffffffffffa7999c814d406f5354c2b7a5ffffffffffffffffffffffffffffffffffffffffffffffffffffff,
+
+384'hffffffffffffddd6d795533d7c5148a7979affffffffffffffffffffffffffffffffffffffffffffffffffffffffffff,
+
+384'hffffffd8d3d59251438b51408c685bebe9e3ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff,
+
+384'hf4f4f470555d8247429865548c7e73faf9f9ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff,
+
+384'hffffffc8b5b97a3b427e514a9e8672d9d4d0ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff,
+
+384'hffffffffffffb19097924d4b9f7e6ccec6bfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff,
+
+384'hffffffffffff8a7c85804444915e58ae9e93f4f3f3ffffffffffffffffffffffffffffffffffffffffffffffffffffff,
+
+384'hfffffff7f6f774646c733f477a4c499f806dbfb4abffffffffffffffffffffffffffffffffffffffffffffffffffffff,
+
+384'hfffffffffffffcfcfcded8d9c8a7a8a68684a88d8affffffffffffffffffffffffffffffffffffffffffffffffffffff,
+
+384'hffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+
 		  
 		  
         };

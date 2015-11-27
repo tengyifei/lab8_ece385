@@ -45,8 +45,7 @@ module  vga_controller ( input        Clk,       // 50 MHz clock
 	 // signal indicates if ok to display color for a pixel
 	 logic display;
 	 
-    //Disable Composite Sync
-    assign sync = 1'b0;
+
      
 	//This cuts the 50 Mhz clock in half to generate a 25 MHz pixel clock  
     always_ff @ (posedge Clk or posedge Reset )
@@ -118,6 +117,21 @@ module  vga_controller ( input        Clk,       // 50 MHz clock
             display = 1'b1;
     end 
    
+	//self modified
+	always_comb
+	begin
+		if ( (vc >= 10'b0111100000) ) 
+            sync = 1'b0;
+        else 
+            sync = 1'b1;
+	
+	end
+	
+	
+	
+	 //Disable Composite Sync
+    //assign sync = 1'b0;
+	
     assign blank = display;
     assign pixel_clk = clkdiv;
     

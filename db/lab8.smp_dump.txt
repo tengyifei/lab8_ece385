@@ -1,4 +1,28 @@
 
+State Machine - |lab8|p2_weapon_state_machine:p2_weapon|state
+Name state.FIRE state.RUN state.READY state.WAIT 
+state.WAIT 0 0 0 0 
+state.READY 0 0 1 1 
+state.RUN 0 1 0 1 
+state.FIRE 1 0 0 1 
+
+State Machine - |lab8|p1_weapon_state_machine:p1_weapon|state
+Name state.FIRE state.RUN state.READY state.WAIT 
+state.WAIT 0 0 0 0 
+state.READY 0 0 1 1 
+state.RUN 0 1 0 1 
+state.FIRE 1 0 0 1 
+
+State Machine - |lab8|game_state:main_state0|state
+Name state.P2_WIN state.P1_WIN state.P2_ATTACK_UPDATE state.P1_ATTACK_UPDATE state.P2_TURN state.P1_TURN state.START 
+state.START 0 0 0 0 0 0 0 
+state.P1_TURN 0 0 0 0 0 1 1 
+state.P2_TURN 0 0 0 0 1 0 1 
+state.P1_ATTACK_UPDATE 0 0 0 1 0 0 1 
+state.P2_ATTACK_UPDATE 0 0 1 0 0 0 1 
+state.P1_WIN 0 1 0 0 0 0 1 
+state.P2_WIN 1 0 0 0 0 0 1 
+
 State Machine - |lab8|nios_system:nios_system|nios_system_sdram:sdram|m_next
 Name m_next.010000000 m_next.000010000 m_next.000001000 m_next.000000001 
 m_next.000000001 0 0 0 0 

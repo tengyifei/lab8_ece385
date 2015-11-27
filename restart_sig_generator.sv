@@ -10,11 +10,11 @@ logic restart_sig;
 	always_ff @ (posedge frame_clk, posedge Reset)
 	begin
 	if(Reset)
-		restart <=1'b0;
+		restart_sig <=1'b0;
 	else if(keycode == 8'd21)//"R"
-		restart <= 1'b1;
+		restart_sig <= 1'b1;
 	else
-		restart <= 1'b0;
+		restart_sig <= 1'b0;
 	
 	end
 										

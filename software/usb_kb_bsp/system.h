@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_qsys_0' in SOPC Builder design 'nios_system'
  * SOPC Builder design path: ../../nios_system.sopcinfo
  *
- * Generated: Mon Oct 19 17:27:48 CDT 2015
+ * Generated: Thu Nov 26 16:31:49 CST 2015
  */
 
 /*
@@ -128,6 +128,7 @@
 #define __ALTERA_AVALON_ONCHIP_MEMORY2
 #define __ALTERA_AVALON_PIO
 #define __ALTERA_AVALON_SYSID_QSYS
+#define __ALTERA_AVALON_TIMER
 #define __ALTERA_NIOS2_QSYS
 #define __ALTPLL
 
@@ -138,7 +139,7 @@
  */
 
 #define ALT_MODULE_CLASS_Keycode altera_avalon_pio
-#define KEYCODE_BASE 0x70
+#define KEYCODE_BASE 0x100
 #define KEYCODE_BIT_CLEARING_EDGE_REGISTER 0
 #define KEYCODE_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define KEYCODE_CAPTURE 0
@@ -175,19 +176,19 @@
 #define ALT_NUM_INTERNAL_INTERRUPT_CONTROLLERS 1
 #define ALT_NUM_INTERRUPT_CONTROLLERS 1
 #define ALT_STDERR "/dev/jtag_uart_0"
-#define ALT_STDERR_BASE 0xc0
+#define ALT_STDERR_BASE 0x150
 #define ALT_STDERR_DEV jtag_uart_0
 #define ALT_STDERR_IS_JTAG_UART
 #define ALT_STDERR_PRESENT
 #define ALT_STDERR_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDIN "/dev/jtag_uart_0"
-#define ALT_STDIN_BASE 0xc0
+#define ALT_STDIN_BASE 0x150
 #define ALT_STDIN_DEV jtag_uart_0
 #define ALT_STDIN_IS_JTAG_UART
 #define ALT_STDIN_PRESENT
 #define ALT_STDIN_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDOUT "/dev/jtag_uart_0"
-#define ALT_STDOUT_BASE 0xc0
+#define ALT_STDOUT_BASE 0x150
 #define ALT_STDOUT_DEV jtag_uart_0
 #define ALT_STDOUT_IS_JTAG_UART
 #define ALT_STDOUT_PRESENT
@@ -196,12 +197,66 @@
 
 
 /*
+ * ball1_pos configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_ball1_pos altera_avalon_pio
+#define BALL1_POS_BASE 0x50
+#define BALL1_POS_BIT_CLEARING_EDGE_REGISTER 0
+#define BALL1_POS_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define BALL1_POS_CAPTURE 0
+#define BALL1_POS_DATA_WIDTH 20
+#define BALL1_POS_DO_TEST_BENCH_WIRING 0
+#define BALL1_POS_DRIVEN_SIM_VALUE 0
+#define BALL1_POS_EDGE_TYPE "NONE"
+#define BALL1_POS_FREQ 50000000
+#define BALL1_POS_HAS_IN 1
+#define BALL1_POS_HAS_OUT 0
+#define BALL1_POS_HAS_TRI 0
+#define BALL1_POS_IRQ -1
+#define BALL1_POS_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define BALL1_POS_IRQ_TYPE "NONE"
+#define BALL1_POS_NAME "/dev/ball1_pos"
+#define BALL1_POS_RESET_VALUE 0
+#define BALL1_POS_SPAN 16
+#define BALL1_POS_TYPE "altera_avalon_pio"
+
+
+/*
+ * ball2_pos configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_ball2_pos altera_avalon_pio
+#define BALL2_POS_BASE 0x40
+#define BALL2_POS_BIT_CLEARING_EDGE_REGISTER 0
+#define BALL2_POS_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define BALL2_POS_CAPTURE 0
+#define BALL2_POS_DATA_WIDTH 20
+#define BALL2_POS_DO_TEST_BENCH_WIRING 0
+#define BALL2_POS_DRIVEN_SIM_VALUE 0
+#define BALL2_POS_EDGE_TYPE "NONE"
+#define BALL2_POS_FREQ 50000000
+#define BALL2_POS_HAS_IN 1
+#define BALL2_POS_HAS_OUT 0
+#define BALL2_POS_HAS_TRI 0
+#define BALL2_POS_IRQ -1
+#define BALL2_POS_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define BALL2_POS_IRQ_TYPE "NONE"
+#define BALL2_POS_NAME "/dev/ball2_pos"
+#define BALL2_POS_RESET_VALUE 0
+#define BALL2_POS_SPAN 16
+#define BALL2_POS_TYPE "altera_avalon_pio"
+
+
+/*
  * hal configuration
  *
  */
 
 #define ALT_MAX_FD 32
-#define ALT_SYS_CLK none
+#define ALT_SYS_CLK TIMER_0
 #define ALT_TIMESTAMP_CLK none
 
 
@@ -211,7 +266,7 @@
  */
 
 #define ALT_MODULE_CLASS_jtag_uart_0 altera_avalon_jtag_uart
-#define JTAG_UART_0_BASE 0xc0
+#define JTAG_UART_0_BASE 0x150
 #define JTAG_UART_0_IRQ 5
 #define JTAG_UART_0_IRQ_INTERRUPT_CONTROLLER_ID 0
 #define JTAG_UART_0_NAME "/dev/jtag_uart_0"
@@ -229,7 +284,7 @@
  */
 
 #define ALT_MODULE_CLASS_key2 altera_avalon_pio
-#define KEY2_BASE 0x90
+#define KEY2_BASE 0x120
 #define KEY2_BIT_CLEARING_EDGE_REGISTER 0
 #define KEY2_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define KEY2_CAPTURE 0
@@ -256,7 +311,7 @@
  */
 
 #define ALT_MODULE_CLASS_key3 altera_avalon_pio
-#define KEY3_BASE 0x80
+#define KEY3_BASE 0x110
 #define KEY3_BIT_CLEARING_EDGE_REGISTER 0
 #define KEY3_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define KEY3_CAPTURE 0
@@ -275,6 +330,33 @@
 #define KEY3_RESET_VALUE 0
 #define KEY3_SPAN 16
 #define KEY3_TYPE "altera_avalon_pio"
+
+
+/*
+ * new_pos_to_hw configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_new_pos_to_hw altera_avalon_pio
+#define NEW_POS_TO_HW_BASE 0xa0
+#define NEW_POS_TO_HW_BIT_CLEARING_EDGE_REGISTER 0
+#define NEW_POS_TO_HW_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define NEW_POS_TO_HW_CAPTURE 0
+#define NEW_POS_TO_HW_DATA_WIDTH 32
+#define NEW_POS_TO_HW_DO_TEST_BENCH_WIRING 0
+#define NEW_POS_TO_HW_DRIVEN_SIM_VALUE 0
+#define NEW_POS_TO_HW_EDGE_TYPE "NONE"
+#define NEW_POS_TO_HW_FREQ 50000000
+#define NEW_POS_TO_HW_HAS_IN 0
+#define NEW_POS_TO_HW_HAS_OUT 1
+#define NEW_POS_TO_HW_HAS_TRI 0
+#define NEW_POS_TO_HW_IRQ -1
+#define NEW_POS_TO_HW_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define NEW_POS_TO_HW_IRQ_TYPE "NONE"
+#define NEW_POS_TO_HW_NAME "/dev/new_pos_to_hw"
+#define NEW_POS_TO_HW_RESET_VALUE 0
+#define NEW_POS_TO_HW_SPAN 16
+#define NEW_POS_TO_HW_TYPE "altera_avalon_pio"
 
 
 /*
@@ -312,7 +394,7 @@
  */
 
 #define ALT_MODULE_CLASS_otg_hpi_address altera_avalon_pio
-#define OTG_HPI_ADDRESS_BASE 0x50
+#define OTG_HPI_ADDRESS_BASE 0xe0
 #define OTG_HPI_ADDRESS_BIT_CLEARING_EDGE_REGISTER 0
 #define OTG_HPI_ADDRESS_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define OTG_HPI_ADDRESS_CAPTURE 0
@@ -339,7 +421,7 @@
  */
 
 #define ALT_MODULE_CLASS_otg_hpi_cs altera_avalon_pio
-#define OTG_HPI_CS_BASE 0x60
+#define OTG_HPI_CS_BASE 0xf0
 #define OTG_HPI_CS_BIT_CLEARING_EDGE_REGISTER 0
 #define OTG_HPI_CS_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define OTG_HPI_CS_CAPTURE 0
@@ -366,7 +448,7 @@
  */
 
 #define ALT_MODULE_CLASS_otg_hpi_data altera_avalon_pio
-#define OTG_HPI_DATA_BASE 0x30
+#define OTG_HPI_DATA_BASE 0xc0
 #define OTG_HPI_DATA_BIT_CLEARING_EDGE_REGISTER 0
 #define OTG_HPI_DATA_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define OTG_HPI_DATA_CAPTURE 0
@@ -393,7 +475,7 @@
  */
 
 #define ALT_MODULE_CLASS_otg_hpi_r altera_avalon_pio
-#define OTG_HPI_R_BASE 0x40
+#define OTG_HPI_R_BASE 0xd0
 #define OTG_HPI_R_BIT_CLEARING_EDGE_REGISTER 0
 #define OTG_HPI_R_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define OTG_HPI_R_CAPTURE 0
@@ -420,7 +502,7 @@
  */
 
 #define ALT_MODULE_CLASS_otg_hpi_w altera_avalon_pio
-#define OTG_HPI_W_BASE 0x20
+#define OTG_HPI_W_BASE 0xb0
 #define OTG_HPI_W_BIT_CLEARING_EDGE_REGISTER 0
 #define OTG_HPI_W_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define OTG_HPI_W_CAPTURE 0
@@ -439,6 +521,87 @@
 #define OTG_HPI_W_RESET_VALUE 0
 #define OTG_HPI_W_SPAN 16
 #define OTG_HPI_W_TYPE "altera_avalon_pio"
+
+
+/*
+ * p1_old_pos_to_sw configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_p1_old_pos_to_sw altera_avalon_pio
+#define P1_OLD_POS_TO_SW_BASE 0x90
+#define P1_OLD_POS_TO_SW_BIT_CLEARING_EDGE_REGISTER 0
+#define P1_OLD_POS_TO_SW_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define P1_OLD_POS_TO_SW_CAPTURE 0
+#define P1_OLD_POS_TO_SW_DATA_WIDTH 20
+#define P1_OLD_POS_TO_SW_DO_TEST_BENCH_WIRING 0
+#define P1_OLD_POS_TO_SW_DRIVEN_SIM_VALUE 0
+#define P1_OLD_POS_TO_SW_EDGE_TYPE "NONE"
+#define P1_OLD_POS_TO_SW_FREQ 50000000
+#define P1_OLD_POS_TO_SW_HAS_IN 1
+#define P1_OLD_POS_TO_SW_HAS_OUT 0
+#define P1_OLD_POS_TO_SW_HAS_TRI 0
+#define P1_OLD_POS_TO_SW_IRQ -1
+#define P1_OLD_POS_TO_SW_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define P1_OLD_POS_TO_SW_IRQ_TYPE "NONE"
+#define P1_OLD_POS_TO_SW_NAME "/dev/p1_old_pos_to_sw"
+#define P1_OLD_POS_TO_SW_RESET_VALUE 0
+#define P1_OLD_POS_TO_SW_SPAN 16
+#define P1_OLD_POS_TO_SW_TYPE "altera_avalon_pio"
+
+
+/*
+ * p2_old_pos_to_sw configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_p2_old_pos_to_sw altera_avalon_pio
+#define P2_OLD_POS_TO_SW_BASE 0x60
+#define P2_OLD_POS_TO_SW_BIT_CLEARING_EDGE_REGISTER 0
+#define P2_OLD_POS_TO_SW_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define P2_OLD_POS_TO_SW_CAPTURE 0
+#define P2_OLD_POS_TO_SW_DATA_WIDTH 20
+#define P2_OLD_POS_TO_SW_DO_TEST_BENCH_WIRING 0
+#define P2_OLD_POS_TO_SW_DRIVEN_SIM_VALUE 0
+#define P2_OLD_POS_TO_SW_EDGE_TYPE "NONE"
+#define P2_OLD_POS_TO_SW_FREQ 50000000
+#define P2_OLD_POS_TO_SW_HAS_IN 1
+#define P2_OLD_POS_TO_SW_HAS_OUT 0
+#define P2_OLD_POS_TO_SW_HAS_TRI 0
+#define P2_OLD_POS_TO_SW_IRQ -1
+#define P2_OLD_POS_TO_SW_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define P2_OLD_POS_TO_SW_IRQ_TYPE "NONE"
+#define P2_OLD_POS_TO_SW_NAME "/dev/p2_old_pos_to_sw"
+#define P2_OLD_POS_TO_SW_RESET_VALUE 0
+#define P2_OLD_POS_TO_SW_SPAN 16
+#define P2_OLD_POS_TO_SW_TYPE "altera_avalon_pio"
+
+
+/*
+ * power_angle configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_power_angle altera_avalon_pio
+#define POWER_ANGLE_BASE 0x80
+#define POWER_ANGLE_BIT_CLEARING_EDGE_REGISTER 0
+#define POWER_ANGLE_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define POWER_ANGLE_CAPTURE 0
+#define POWER_ANGLE_DATA_WIDTH 16
+#define POWER_ANGLE_DO_TEST_BENCH_WIRING 0
+#define POWER_ANGLE_DRIVEN_SIM_VALUE 0
+#define POWER_ANGLE_EDGE_TYPE "NONE"
+#define POWER_ANGLE_FREQ 50000000
+#define POWER_ANGLE_HAS_IN 1
+#define POWER_ANGLE_HAS_OUT 0
+#define POWER_ANGLE_HAS_TRI 0
+#define POWER_ANGLE_IRQ -1
+#define POWER_ANGLE_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define POWER_ANGLE_IRQ_TYPE "NONE"
+#define POWER_ANGLE_NAME "/dev/power_angle"
+#define POWER_ANGLE_RESET_VALUE 0
+#define POWER_ANGLE_SPAN 16
+#define POWER_ANGLE_TYPE "altera_avalon_pio"
 
 
 /*
@@ -486,7 +649,7 @@
  */
 
 #define ALT_MODULE_CLASS_sdram_pll altpll
-#define SDRAM_PLL_BASE 0xa0
+#define SDRAM_PLL_BASE 0x130
 #define SDRAM_PLL_IRQ -1
 #define SDRAM_PLL_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SDRAM_PLL_NAME "/dev/sdram_pll"
@@ -500,13 +663,66 @@
  */
 
 #define ALT_MODULE_CLASS_sysid_qsys_0 altera_avalon_sysid_qsys
-#define SYSID_QSYS_0_BASE 0xb8
+#define SYSID_QSYS_0_BASE 0x148
 #define SYSID_QSYS_0_ID 0
 #define SYSID_QSYS_0_IRQ -1
 #define SYSID_QSYS_0_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_QSYS_0_NAME "/dev/sysid_qsys_0"
 #define SYSID_QSYS_0_SPAN 8
-#define SYSID_QSYS_0_TIMESTAMP 1445287811
+#define SYSID_QSYS_0_TIMESTAMP 1448576782
 #define SYSID_QSYS_0_TYPE "altera_avalon_sysid_qsys"
+
+
+/*
+ * timer_0 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_timer_0 altera_avalon_timer
+#define TIMER_0_ALWAYS_RUN 0
+#define TIMER_0_BASE 0x20
+#define TIMER_0_COUNTER_SIZE 32
+#define TIMER_0_FIXED_PERIOD 0
+#define TIMER_0_FREQ 50000000
+#define TIMER_0_IRQ 1
+#define TIMER_0_IRQ_INTERRUPT_CONTROLLER_ID 0
+#define TIMER_0_LOAD_VALUE 49999
+#define TIMER_0_MULT 0.001
+#define TIMER_0_NAME "/dev/timer_0"
+#define TIMER_0_PERIOD 1
+#define TIMER_0_PERIOD_UNITS "ms"
+#define TIMER_0_RESET_OUTPUT 0
+#define TIMER_0_SNAPSHOT 1
+#define TIMER_0_SPAN 32
+#define TIMER_0_TICKS_PER_SEC 1000
+#define TIMER_0_TIMEOUT_PULSE_OUTPUT 0
+#define TIMER_0_TYPE "altera_avalon_timer"
+
+
+/*
+ * vsync configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_vsync altera_avalon_pio
+#define VSYNC_BASE 0x70
+#define VSYNC_BIT_CLEARING_EDGE_REGISTER 0
+#define VSYNC_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define VSYNC_CAPTURE 0
+#define VSYNC_DATA_WIDTH 1
+#define VSYNC_DO_TEST_BENCH_WIRING 0
+#define VSYNC_DRIVEN_SIM_VALUE 0
+#define VSYNC_EDGE_TYPE "NONE"
+#define VSYNC_FREQ 50000000
+#define VSYNC_HAS_IN 1
+#define VSYNC_HAS_OUT 0
+#define VSYNC_HAS_TRI 0
+#define VSYNC_IRQ -1
+#define VSYNC_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define VSYNC_IRQ_TYPE "NONE"
+#define VSYNC_NAME "/dev/vsync"
+#define VSYNC_RESET_VALUE 0
+#define VSYNC_SPAN 16
+#define VSYNC_TYPE "altera_avalon_pio"
 
 #endif /* __SYSTEM_H_ */

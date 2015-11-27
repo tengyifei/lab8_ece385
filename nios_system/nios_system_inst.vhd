@@ -1,5 +1,7 @@
 	component nios_system is
 		port (
+			ball1_pos_export        : in    std_logic_vector(19 downto 0) := (others => 'X'); -- export
+			ball2_pos_export        : in    std_logic_vector(19 downto 0) := (others => 'X'); -- export
 			clk_clk                 : in    std_logic                     := 'X';             -- clk
 			key2_wire_export        : in    std_logic                     := 'X';             -- export
 			key3_wire_export        : in    std_logic                     := 'X';             -- export
@@ -12,6 +14,7 @@
 			otg_hpi_r_export        : out   std_logic;                                        -- export
 			otg_hpi_w_export        : out   std_logic;                                        -- export
 			p1_old_pos_to_sw_export : in    std_logic_vector(19 downto 0) := (others => 'X'); -- export
+			p2_old_pos_to_sw_export : in    std_logic_vector(19 downto 0) := (others => 'X'); -- export
 			power_angle_export      : in    std_logic_vector(15 downto 0) := (others => 'X'); -- export
 			reset_reset_n           : in    std_logic                     := 'X';             -- reset_n
 			sdram_clk_clk           : out   std_logic;                                        -- clk
@@ -24,14 +27,14 @@
 			sdram_wire_dqm          : out   std_logic_vector(3 downto 0);                     -- dqm
 			sdram_wire_ras_n        : out   std_logic;                                        -- ras_n
 			sdram_wire_we_n         : out   std_logic;                                        -- we_n
-			timer_0_irq_irq         : out   std_logic;                                        -- irq
-			vsync_export            : in    std_logic                     := 'X';             -- export
-			p2_old_pos_to_sw_export : in    std_logic_vector(19 downto 0) := (others => 'X')  -- export
+			vsync_export            : in    std_logic                     := 'X'              -- export
 		);
 	end component nios_system;
 
 	u0 : component nios_system
 		port map (
+			ball1_pos_export        => CONNECTED_TO_ball1_pos_export,        --        ball1_pos.export
+			ball2_pos_export        => CONNECTED_TO_ball2_pos_export,        --        ball2_pos.export
 			clk_clk                 => CONNECTED_TO_clk_clk,                 --              clk.clk
 			key2_wire_export        => CONNECTED_TO_key2_wire_export,        --        key2_wire.export
 			key3_wire_export        => CONNECTED_TO_key3_wire_export,        --        key3_wire.export
@@ -44,6 +47,7 @@
 			otg_hpi_r_export        => CONNECTED_TO_otg_hpi_r_export,        --        otg_hpi_r.export
 			otg_hpi_w_export        => CONNECTED_TO_otg_hpi_w_export,        --        otg_hpi_w.export
 			p1_old_pos_to_sw_export => CONNECTED_TO_p1_old_pos_to_sw_export, -- p1_old_pos_to_sw.export
+			p2_old_pos_to_sw_export => CONNECTED_TO_p2_old_pos_to_sw_export, -- p2_old_pos_to_sw.export
 			power_angle_export      => CONNECTED_TO_power_angle_export,      --      power_angle.export
 			reset_reset_n           => CONNECTED_TO_reset_reset_n,           --            reset.reset_n
 			sdram_clk_clk           => CONNECTED_TO_sdram_clk_clk,           --        sdram_clk.clk
@@ -56,8 +60,6 @@
 			sdram_wire_dqm          => CONNECTED_TO_sdram_wire_dqm,          --                 .dqm
 			sdram_wire_ras_n        => CONNECTED_TO_sdram_wire_ras_n,        --                 .ras_n
 			sdram_wire_we_n         => CONNECTED_TO_sdram_wire_we_n,         --                 .we_n
-			timer_0_irq_irq         => CONNECTED_TO_timer_0_irq_irq,         --      timer_0_irq.irq
-			vsync_export            => CONNECTED_TO_vsync_export,            --            vsync.export
-			p2_old_pos_to_sw_export => CONNECTED_TO_p2_old_pos_to_sw_export  -- p2_old_pos_to_sw.export
+			vsync_export            => CONNECTED_TO_vsync_export             --            vsync.export
 		);
 

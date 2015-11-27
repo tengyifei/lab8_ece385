@@ -1,5 +1,7 @@
 
 module nios_system (
+	ball1_pos_export,
+	ball2_pos_export,
 	clk_clk,
 	key2_wire_export,
 	key3_wire_export,
@@ -12,6 +14,7 @@ module nios_system (
 	otg_hpi_r_export,
 	otg_hpi_w_export,
 	p1_old_pos_to_sw_export,
+	p2_old_pos_to_sw_export,
 	power_angle_export,
 	reset_reset_n,
 	sdram_clk_clk,
@@ -24,10 +27,10 @@ module nios_system (
 	sdram_wire_dqm,
 	sdram_wire_ras_n,
 	sdram_wire_we_n,
-	timer_0_irq_irq,
-	vsync_export,
-	p2_old_pos_to_sw_export);	
+	vsync_export);	
 
+	input	[19:0]	ball1_pos_export;
+	input	[19:0]	ball2_pos_export;
 	input		clk_clk;
 	input		key2_wire_export;
 	input		key3_wire_export;
@@ -40,6 +43,7 @@ module nios_system (
 	output		otg_hpi_r_export;
 	output		otg_hpi_w_export;
 	input	[19:0]	p1_old_pos_to_sw_export;
+	input	[19:0]	p2_old_pos_to_sw_export;
 	input	[15:0]	power_angle_export;
 	input		reset_reset_n;
 	output		sdram_clk_clk;
@@ -52,7 +56,5 @@ module nios_system (
 	output	[3:0]	sdram_wire_dqm;
 	output		sdram_wire_ras_n;
 	output		sdram_wire_we_n;
-	output		timer_0_irq_irq;
 	input		vsync_export;
-	input	[19:0]	p2_old_pos_to_sw_export;
 endmodule

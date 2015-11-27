@@ -578,6 +578,8 @@ set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_RO
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name FLOW_ENABLE_POWER_ANALYZER ON
 set_global_assignment -name POWER_DEFAULT_INPUT_IO_TOGGLE_RATE "12.5 %"
+set_global_assignment -name SYSTEMVERILOG_FILE health_reg.sv
+set_global_assignment -name SYSTEMVERILOG_FILE Color_Mapper_1.sv
 set_global_assignment -name SYSTEMVERILOG_FILE power_angle_reg_p1.sv
 set_global_assignment -name SYSTEMVERILOG_FILE p1_weapon_state_machine.sv
 set_global_assignment -name SYSTEMVERILOG_FILE font_rom_32_bit.sv
@@ -588,7 +590,6 @@ set_global_assignment -name SYSTEMVERILOG_FILE VGA_controller.sv
 set_global_assignment -name SYSTEMVERILOG_FILE lab8.sv
 set_global_assignment -name SYSTEMVERILOG_FILE hpi_io_intf.sv
 set_global_assignment -name SYSTEMVERILOG_FILE HexDriver.sv
-set_global_assignment -name SYSTEMVERILOG_FILE Color_Mapper.sv
 set_global_assignment -name SYSTEMVERILOG_FILE colortable.sv
 set_global_assignment -name SYSTEMVERILOG_FILE ch2.sv
 set_global_assignment -name SYSTEMVERILOG_FILE ../lab9/ball_state_machine.sv
@@ -600,6 +601,5 @@ set_global_assignment -name SYSTEMVERILOG_FILE p1_attack_confirm.sv
 set_global_assignment -name SYSTEMVERILOG_FILE p1_weapon_mode_container.sv
 set_global_assignment -name SYSTEMVERILOG_FILE p2_attack_confirm.sv
 set_global_assignment -name SYSTEMVERILOG_FILE p2_weapon_mode_container.sv
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
-set_global_assignment -name SYSTEMVERILOG_FILE Color_Mapper_1.sv
 set_global_assignment -name SYSTEMVERILOG_FILE power_angle_reg_p2.sv
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

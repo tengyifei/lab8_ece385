@@ -2,7 +2,7 @@
 
 module  lab8 		( input         CLOCK_50,
                        input[3:0]    KEY, //bit 0 is set up as Reset
-							  output [6:0]  HEX0, HEX1,// HEX2, HEX3, HEX4, HEX5, HEX6, HEX7,
+							  output [6:0]  HEX0, HEX1,HEX2, HEX3, // HEX4, HEX5, HEX6, HEX7,
 							  //output [8:0]  LEDG,
 							  //output [17:0] LEDR,
 							  // VGA Interface 
@@ -55,7 +55,7 @@ module  lab8 		( input         CLOCK_50,
 	 //interconnected wires declared for the game
 	 logic restart_wire;
 	 logic [31:0] new_pos_to_hw_wire;
-    logic [19:0] p2_old_pos_to_sw_export_wire, p1_old_pos_to_sw_export_wire;
+    logic [19:0] p2_old_pos_to_sw_export_wire, p1_old_pos_to_sw_export_wire, ball1_pos_wire, ball2_pos_wire;
 	 logic [1:0] game_turn_wire;
 	 logic weapon_display_p1_wire,weapon_display_p2_wire;
 	 logic weapon_mode_p1_wire, weapon_mode_p2_wire;
@@ -72,6 +72,11 @@ module  lab8 		( input         CLOCK_50,
 	 assign power_angle_export_wire = {angle_p2_wire, power_p2_wire,angle_p1_wire,power_p1_wire};
 	 assign  p1_old_pos_to_sw_export_wire = {ch1ysig,ch1xsig};
 	 assign  p2_old_pos_to_sw_export_wire = {ch2ysig,ch2xsig};
+	 assign  ball1_pos_wire = {ball1ysig, ball1xsig};
+	 assign  ball2_pos_wire = { ball2ysig, ball2xsig};
+	 assign  vsync_export_wire= VGA_SYNC_N;
+	 
+	 
 	 
 	 hpi_io_intf hpi_io_inst(   .from_sw_address(hpi_addr),
 										 .from_sw_data_in(hpi_data_in),
@@ -90,7 +95,7 @@ module  lab8 		( input         CLOCK_50,
 										 .Reset(Reset_h)
 	 );
 	 
-	 //The connections for nios_system might be named different depending on how you set up Qsys
+
 	 nios_system nios_system(
 										 .clk_clk(Clk), 
 										 .new_pos_to_hw_export(new_pos_to_hw_wire),
@@ -98,6 +103,8 @@ module  lab8 		( input         CLOCK_50,
 										 .power_angle_export(power_angle_export_wire),
 										 .p2_old_pos_to_sw_export(p2_old_pos_to_sw_export_wire),
 										 .p1_old_pos_to_sw_export(p1_old_pos_to_sw_export_wire),
+										 .ball1_pos_export(ball1_pos_wire),
+										 .ball2_pos_export(ball2_pos_wire), 
 										 .reset_reset_n(KEY[0]),   
 										 .sdram_wire_addr(DRAM_ADDR), 
 										 .sdram_wire_ba(DRAM_BA),   
@@ -204,7 +211,7 @@ p2_weapon_state_machine p2_weapon(
 	 
    
 //take the input from keyboard and detect if the restart button "R" is pressed
- restart_sig_generator ( 
+ restart_sig_generator restartsig( 
  .frame_clk(vssig), 
  .Reset(Reset_h),
  .keycode(keycode[7:0]),
@@ -270,7 +277,7 @@ p2_weapon_state_machine p2_weapon(
 	
 	
 
-	color_mapper color_instance(
+	color_mapper_1 color_instance(
 	 
 	 .Ball1X(ball1xsig), 
 	 .Ball1Y(ball1ysig),
@@ -283,7 +290,7 @@ p2_weapon_state_machine p2_weapon(
 	 .DrawX(drawxsig), 
 	 .DrawY(drawysig), 	 
 	 .Ball1_size(ball1sizesig),
-	 .Ball2_size(ballsizesig),	 
+	 .Ball2_size(ball2sizesig),	 
 	 .ch1_sizeX(ch1sizesigX),
 	 .ch1_sizeY(ch1sizesigY),
 	 .ch2_sizeX(ch2sizesigX),
@@ -304,6 +311,8 @@ p2_weapon_state_machine p2_weapon(
 	
 	 HexDriver hex_inst_0 (keycode[3:0], HEX0);
 	 HexDriver hex_inst_1 (keycode[7:4], HEX1);
-    
+    HexDriver hex_inst_2 ({3'b0,weapon_mode_p1_wire}, HEX2); // display weapon register
+	 HexDriver hex_inst_3 ({3'b0,weapon_mode_p2_wire}, HEX3); // display weapon register
+	 
 
 endmodule
