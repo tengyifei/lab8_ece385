@@ -26,6 +26,35 @@
 #include "lcp_data.h"
 
 
+/* the addresses for my PIO ports */
+
+  	#define p1_old_pos_to_sw (volatile int*)  0x00000090 // the addresses pointing to the address of the p1 location
+  	#define p2_old_pos_to_sw (volatile int*)  0x00000060 // the addresses pointing to the address of the p2 location
+  	#define power_angle  	 (volatile int*)  0x00000080 // the address of the power_angle of p1 and p2
+  	#define vsync 			 (volatile char*)  0x00000070  // the address of the vsync
+  	#define ball1_pos 		 (volatile int*)  0x00000050
+  	#define ball2_pos 		 (volatile int*)  0x00000040
+
+  	#define new_pos_to_hw    (int*)           0x000000a0 // the address of new address to hardware
+
+/* declaration and initialization ends */
+
+/* my cast function */
+
+  // int char2int(char* idx)
+  // {
+  // 	char temp;
+  // 	temp = *idx;
+  // 	if(*idx)
+
+
+  // }
+
+/* my case function ends */
+
+
+
+
 //----------------------------------------------------------------------------------------//
 //
 //                                Main function
@@ -55,6 +84,9 @@ int main(void)
 	alt_u8 hot_plug_count;
 	alt_u16 code;
 
+	int i,j;
+	char temp;
+/* steps that I don't care much */
 	printf("USB keyboard setup...\n\n");
 
 	//----------------------------------------SIE1 initial---------------------------------------------------//
@@ -463,10 +495,11 @@ int main(void)
 
 	printf("---------------[ENUM PROCESS]:get descriptor (class 0x22) done!----------------\n");
 
-
+/* steps that I don't care much ends here */
 
 	//-----------------------------------get keycode value------------------------------------------------//
 	usleep(10000);
+
 	while(1)
 	{
 		toggle++;
@@ -522,6 +555,26 @@ int main(void)
 		keycode = IO_read(HPI_DATA);
 		printf("\nfirst two keycode values are %04x\n",keycode);
 		IOWR(KEYCODE_BASE, 0, keycode & 0xff);
+
+
+		/* logics to calculate trajectory positiions */
+
+
+		printf("p1_old_pos_to_sw: ");
+
+
+			printf("%d",*p1_old_pos_to_sw);
+
+		printf("\n");
+
+
+
+
+
+
+		/* trajectory calculation starts here  */
+
+
 
 
 		usleep(200);//usleep(5000);

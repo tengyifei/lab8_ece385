@@ -2,9 +2,9 @@
 
 module  lab8 		( input         CLOCK_50,
                        input[3:0]    KEY, //bit 0 is set up as Reset
-							  output [6:0]  HEX0, HEX1,HEX2, HEX3, // HEX4, HEX5, HEX6, HEX7,
+							  output [6:0]  HEX0, HEX1,HEX2, HEX3,  HEX4, HEX5, HEX6, HEX7,
 							  //output [8:0]  LEDG,
-							  //output [17:0] LEDR,
+							  output [17:0] LEDR,
 							  // VGA Interface 
                        output [7:0]  VGA_R,					//VGA Red
 							                VGA_G,					//VGA Green
@@ -55,7 +55,7 @@ module  lab8 		( input         CLOCK_50,
 	 //interconnected wires declared for the game
 	 logic restart_wire;
 	 logic [31:0] new_pos_to_hw_wire;
-    logic [19:0] p2_old_pos_to_sw_export_wire, p1_old_pos_to_sw_export_wire, ball1_pos_wire, ball2_pos_wire;
+    logic [19:0] p2_old_pos_to_sw_export_wire, p1_old_pos_to_sw_export_wire;     logic [20:0] ball1_pos_wire, ball2_pos_wire;
 	 logic [1:0] game_turn_wire;
 	 logic weapon_display_p1_wire,weapon_display_p2_wire;
 	 logic weapon_mode_p1_wire, weapon_mode_p2_wire;
@@ -72,8 +72,8 @@ module  lab8 		( input         CLOCK_50,
 	 assign power_angle_export_wire = {angle_p2_wire, power_p2_wire,angle_p1_wire,power_p1_wire};
 	 assign  p1_old_pos_to_sw_export_wire = {ch1ysig,ch1xsig};
 	 assign  p2_old_pos_to_sw_export_wire = {ch2ysig,ch2xsig};
-	 assign  ball1_pos_wire = {ball1ysig, ball1xsig};
-	 assign  ball2_pos_wire = { ball2ysig, ball2xsig};
+	 assign  ball1_pos_wire = {weapon_mode_p1_wire,ball1ysig, ball1xsig};
+	 assign  ball2_pos_wire = {weapon_mode_p1_wire, ball2ysig, ball2xsig};
 	 assign  vsync_export_wire= VGA_SYNC_N;
 	 
 	 
@@ -187,7 +187,8 @@ game_state main_state0(
 	 .weapon_mode(weapon_mode_p1_wire),
 	 .BallX(ball1xsig), 
 	 .BallY(ball1ysig),
-	 .fire_on(fire_on_wire_1)
+	 .fire_on(fire_on_wire_1),
+	 .in_run_wire(LEDR[2])
 	 );
 	 
 p2_weapon_state_machine p2_weapon(
@@ -308,11 +309,15 @@ p2_weapon_state_machine p2_weapon(
 	 
 	 );
 				
+	//for debug use
 	
 	 HexDriver hex_inst_0 (keycode[3:0], HEX0);
 	 HexDriver hex_inst_1 (keycode[7:4], HEX1);
-    HexDriver hex_inst_2 ({3'b0,weapon_mode_p1_wire}, HEX2); // display weapon register
-	 HexDriver hex_inst_3 ({3'b0,weapon_mode_p2_wire}, HEX3); // display weapon register
+    HexDriver hex_inst_2 ({2'b0,game_turn_wire}, HEX2); // display weapon register
+	 HexDriver hex_inst_3 ({3'b0,restart_wire}, HEX3); // display weapon register
 	 
+	 
+	 assign LEDR[0]=new_pos_to_hw_wire[30];//endset_1
+	 assign LEDR[1]=new_pos_to_hw_wire[31];//endset_2
 
 endmodule

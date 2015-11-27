@@ -29,8 +29,8 @@ module nios_system (
 	sdram_wire_we_n,
 	vsync_export);	
 
-	input	[19:0]	ball1_pos_export;
-	input	[19:0]	ball2_pos_export;
+	input	[20:0]	ball1_pos_export;
+	input	[20:0]	ball2_pos_export;
 	input		clk_clk;
 	input		key2_wire_export;
 	input		key3_wire_export;

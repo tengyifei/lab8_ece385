@@ -4,8 +4,8 @@
 
 `timescale 1 ps / 1 ps
 module nios_system (
-		input  wire [19:0] ball1_pos_export,        //        ball1_pos.export
-		input  wire [19:0] ball2_pos_export,        //        ball2_pos.export
+		input  wire [20:0] ball1_pos_export,        //        ball1_pos.export
+		input  wire [20:0] ball2_pos_export,        //        ball2_pos.export
 		input  wire        clk_clk,                 //              clk.clk
 		input  wire        key2_wire_export,        //        key2_wire.export
 		input  wire        key3_wire_export,        //        key3_wire.export
@@ -315,7 +315,7 @@ module nios_system (
 		.out_port   (otg_hpi_w_export)                           // external_connection.export
 	);
 
-	nios_system_ball1_pos p1_old_pos_to_sw (
+	nios_system_p1_old_pos_to_sw p1_old_pos_to_sw (
 		.clk      (clk_clk),                                        //                 clk.clk
 		.reset_n  (~rst_controller_001_reset_out_reset),            //               reset.reset_n
 		.address  (mm_interconnect_0_p1_old_pos_to_sw_s1_address),  //                  s1.address
@@ -323,7 +323,7 @@ module nios_system (
 		.in_port  (p1_old_pos_to_sw_export)                         // external_connection.export
 	);
 
-	nios_system_ball1_pos p2_old_pos_to_sw (
+	nios_system_p1_old_pos_to_sw p2_old_pos_to_sw (
 		.clk      (clk_clk),                                        //                 clk.clk
 		.reset_n  (~rst_controller_001_reset_out_reset),            //               reset.reset_n
 		.address  (mm_interconnect_0_p2_old_pos_to_sw_s1_address),  //                  s1.address

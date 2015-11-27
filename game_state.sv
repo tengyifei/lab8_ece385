@@ -56,53 +56,53 @@ module game_state (input frame_clk, Reset, restart,
 		unique case (state)
 		
 			START:
-			  next_state <=	P1_TURN;
+			  next_state=	P1_TURN;
 			
 			P1_TURN:
 			begin
 				if(end_set_1==1'b1)
-					next_state <= P1_ATTACK_UPDATE;
+					next_state = P1_ATTACK_UPDATE;
 				else
-					next_state <= P1_TURN; //have not finished an attack, still waiting
+					next_state = P1_TURN; //have not finished an attack, still waiting
 			end
 			
 			P2_TURN:
 			begin
 				if(end_set_2==1'b1)
-					next_state <= P2_ATTACK_UPDATE;
+					next_state = P2_ATTACK_UPDATE;
 				else
-					next_state <= P2_TURN; //have not finished an attack, still waiting
+					next_state = P2_TURN; //have not finished an attack, still waiting
 			end
 			P1_ATTACK_UPDATE:
 			begin
 				if(p2_health_wire > harm_by_1)
-					next_state <= P2_TURN;
+					next_state = P2_TURN;
 				else
-					next_state <= P1_WIN;
+					next_state = P1_WIN;
 			end
 			
 			P2_ATTACK_UPDATE:
 			begin
 				if(p1_health_wire > harm_by_2)
-					next_state <= P1_TURN;
+					next_state = P1_TURN;
 				else
-					next_state <= P2_WIN;
+					next_state = P2_WIN;
 			end
 			
 			P1_WIN:
 			begin
 				if(restart)
-					next_state <= START;
+					next_state = START;
 				else
-					next_state <= P1_WIN;
+					next_state = P1_WIN;
 			end
 			
 			P2_WIN:
 			begin
 				if(restart)
-					next_state <= START;
+					next_state = START;
 				else
-					next_state <= P2_WIN;
+					next_state = P2_WIN;
 			end
 			default:
 			begin
@@ -129,7 +129,7 @@ begin
 		begin
 			init_p1 =1'b1; //initialize their health to 100
 			init_p2 = 1'b1;
-			game_turn_wire = 2'b01; // this would be player 1's turn;
+			game_turn_wire = 2'b01; // this would be player 1's turn as default;
 		end
 		
 		P1_TURN:

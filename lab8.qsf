@@ -578,6 +578,7 @@ set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_RO
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name FLOW_ENABLE_POWER_ANALYZER ON
 set_global_assignment -name POWER_DEFAULT_INPUT_IO_TOGGLE_RATE "12.5 %"
+set_global_assignment -name SYSTEMVERILOG_FILE ball_state_machine.sv
 set_global_assignment -name SYSTEMVERILOG_FILE health_reg.sv
 set_global_assignment -name SYSTEMVERILOG_FILE Color_Mapper_1.sv
 set_global_assignment -name SYSTEMVERILOG_FILE power_angle_reg_p1.sv
@@ -592,7 +593,6 @@ set_global_assignment -name SYSTEMVERILOG_FILE hpi_io_intf.sv
 set_global_assignment -name SYSTEMVERILOG_FILE HexDriver.sv
 set_global_assignment -name SYSTEMVERILOG_FILE colortable.sv
 set_global_assignment -name SYSTEMVERILOG_FILE ch2.sv
-set_global_assignment -name SYSTEMVERILOG_FILE ../lab9/ball_state_machine.sv
 set_global_assignment -name SYSTEMVERILOG_FILE counter_reg.sv
 set_global_assignment -name SYSTEMVERILOG_FILE game_state.sv
 set_global_assignment -name SYSTEMVERILOG_FILE restart_sig_generator.sv

@@ -10,8 +10,8 @@ module p2_attack_confirm(input [7:0] keycode,
 					attack_start_wire=1'b0;
 				else
 					begin
-						if(keycode == 8'd14)
-						//press "K"
+						if(keycode == 8'd44)
+						//press "space"
 							attack_start_wire=1'b1;
 						else
 							attack_start_wire=1'b0;

@@ -27,15 +27,15 @@ agreement for further details.
 	(port
 		(pt 0 72)
 		(input)
-		(text "ball1_pos_export[19..0]" (rect 0 0 89 12)(font "Arial" (font_size 8)))
-		(text "ball1_pos_export[19..0]" (rect 4 61 142 72)(font "Arial" (font_size 8)))
+		(text "ball1_pos_export[20..0]" (rect 0 0 90 12)(font "Arial" (font_size 8)))
+		(text "ball1_pos_export[20..0]" (rect 4 61 142 72)(font "Arial" (font_size 8)))
 		(line (pt 0 72)(pt 176 72)(line_width 3))
 	)
 	(port
 		(pt 0 112)
 		(input)
-		(text "ball2_pos_export[19..0]" (rect 0 0 90 12)(font "Arial" (font_size 8)))
-		(text "ball2_pos_export[19..0]" (rect 4 101 142 112)(font "Arial" (font_size 8)))
+		(text "ball2_pos_export[20..0]" (rect 0 0 92 12)(font "Arial" (font_size 8)))
+		(text "ball2_pos_export[20..0]" (rect 4 101 142 112)(font "Arial" (font_size 8)))
 		(line (pt 0 112)(pt 176 112)(line_width 3))
 	)
 	(port

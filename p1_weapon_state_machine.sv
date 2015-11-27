@@ -1,4 +1,4 @@
-module p1_weapon_state_machine(input frame_clk, Reset, is_in_turn,
+module p1_weapon_state_machine(input frame_clk, Reset, is_in_turn, output in_run_wire,
 										 input end_set, 
 										 input [7:0] keycode,
 										 input [9:0] ch_pos_x, ch_pos_y, Ball_Y_new, Ball_X_new,
@@ -151,7 +151,7 @@ p1_attack_confirm attack_confirm(
 	assign BallY = Ball_Y_wire;
 	assign fire_on= fire_on_wire;
 	assign weapon_display = weapon_display_wire;
-
+	assign in_run_wire = in_run;
 
 
 

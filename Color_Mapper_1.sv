@@ -822,7 +822,7 @@ module  color_mapper_1 ( input [9:0] Ball1X, Ball1Y,Ball2X, Ball2Y,
 	  //display arrow 1 and arrow 2 depending on the current game turn
 		else if ( DrawX >= 11'd20 && DrawX < 11'd28 && DrawY >= 11'd80 && DrawY < 11'd96 )
 			begin
-			  if(game_turn[0]==1'b1)
+			  if(game_turn==2'b01)
 					begin
 						sprite_addr_font=(DrawY-11'd80+16*11'h1a);// display arrow
 						arrow_1= 1'b1;
@@ -855,14 +855,14 @@ module  color_mapper_1 ( input [9:0] Ball1X, Ball1Y,Ball2X, Ball2Y,
 				wp2_1=1'b0; 
 				wp2_2=1'b0;
 				wp2_3=1'b0;
-				wp2_4=1'b1;
+				wp2_4=1'b0;
 				arrow_2=1'b0;
 				
 			end
 			
 		else if ( DrawX >= 11'd612 && DrawX < 11'd620 && DrawY >= 11'd80 && DrawY < 11'd96 )
 			begin
-			  if(game_turn[1]==1'b1)
+			  if(game_turn==2'b10)
 					begin
 						sprite_addr_font=(DrawY-11'd80+16*11'h1b);// display arrow
 						arrow_2= 1'b1;
@@ -895,7 +895,7 @@ module  color_mapper_1 ( input [9:0] Ball1X, Ball1Y,Ball2X, Ball2Y,
 				wp2_1=1'b0; 
 				wp2_2=1'b0;
 				wp2_3=1'b0;
-				wp2_4=1'b1;
+				wp2_4=1'b0;
 				arrow_1=1'b0;
 			
 				
