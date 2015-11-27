@@ -5,6 +5,23 @@ module p2_weapon_mode_container(input frame_clk, Reset, is_in_turn,
 
 	logic weapon_mode_internal;//act as the internal register
 
+	logic [7:0] prev_1, prev_2; 
+	
+	always_ff @ (posedge frame_clk)
+	begin
+		prev_1 <= keycode;
+	
+	end
+	
+	always_ff @ (posedge frame_clk)
+	begin
+		prev_2 <= prev_1;
+	
+	end
+	
+	
+	
+	
 	
 	always_ff @(posedge frame_clk, posedge Reset)
 	begin
@@ -16,6 +33,8 @@ module p2_weapon_mode_container(input frame_clk, Reset, is_in_turn,
 			 // button "?"
 				begin
 					if(is_run)
+						weapon_mode_internal = weapon_mode_internal;
+					else if(prev_1==prev_2)
 						weapon_mode_internal = weapon_mode_internal;
 					else
 						weapon_mode_internal = ~weapon_mode_internal;
