@@ -1231,7 +1231,7 @@ module  color_mapper_1 ( input [9:0] Ball1X, Ball1Y,Ball2X, Ball2Y,
         begin 
             Red = 8'h00;
             Green = 8'h00;
-            Blue = 8'hff;
+            Blue = 8'h00;
         end
 	// weapon 2 
 	else if ((ball2_on == 1'b1)) 

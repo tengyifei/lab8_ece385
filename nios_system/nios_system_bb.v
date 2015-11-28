@@ -27,7 +27,8 @@ module nios_system (
 	sdram_wire_dqm,
 	sdram_wire_ras_n,
 	sdram_wire_we_n,
-	vsync_export);	
+	vsync_export,
+	game_turn_export);	
 
 	input	[20:0]	ball1_pos_export;
 	input	[20:0]	ball2_pos_export;
@@ -57,4 +58,5 @@ module nios_system (
 	output		sdram_wire_ras_n;
 	output		sdram_wire_we_n;
 	input		vsync_export;
+	input	[1:0]	game_turn_export;
 endmodule

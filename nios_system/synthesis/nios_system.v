@@ -7,6 +7,7 @@ module nios_system (
 		input  wire [20:0] ball1_pos_export,        //        ball1_pos.export
 		input  wire [20:0] ball2_pos_export,        //        ball2_pos.export
 		input  wire        clk_clk,                 //              clk.clk
+		input  wire [1:0]  game_turn_export,        //        game_turn.export
 		input  wire        key2_wire_export,        //        key2_wire.export
 		input  wire        key3_wire_export,        //        key3_wire.export
 		output wire [15:0] keycode_export,          //          keycode.export
@@ -141,12 +142,14 @@ module nios_system (
 	wire   [1:0] mm_interconnect_0_ball1_pos_s1_address;                       // mm_interconnect_0:ball1_pos_s1_address -> ball1_pos:address
 	wire  [31:0] mm_interconnect_0_ball2_pos_s1_readdata;                      // ball2_pos:readdata -> mm_interconnect_0:ball2_pos_s1_readdata
 	wire   [1:0] mm_interconnect_0_ball2_pos_s1_address;                       // mm_interconnect_0:ball2_pos_s1_address -> ball2_pos:address
+	wire  [31:0] mm_interconnect_0_game_turn_s1_readdata;                      // game_turn:readdata -> mm_interconnect_0:game_turn_s1_readdata
+	wire   [1:0] mm_interconnect_0_game_turn_s1_address;                       // mm_interconnect_0:game_turn_s1_address -> game_turn:address
 	wire         irq_mapper_receiver0_irq;                                     // jtag_uart_0:av_irq -> irq_mapper:receiver0_irq
 	wire         irq_mapper_receiver1_irq;                                     // timer_0:irq -> irq_mapper:receiver1_irq
 	wire  [31:0] nios2_qsys_0_d_irq_irq;                                       // irq_mapper:sender_irq -> nios2_qsys_0:d_irq
 	wire         rst_controller_reset_out_reset;                               // rst_controller:reset_out -> [Keycode:reset_n, irq_mapper:reset, key2:reset_n, key3:reset_n, mm_interconnect_0:nios2_qsys_0_reset_n_reset_bridge_in_reset_reset, nios2_qsys_0:reset_n, onchip_memory2_0:reset, rst_translator:in_reset, sdram_pll:reset]
 	wire         rst_controller_reset_out_reset_req;                           // rst_controller:reset_req -> [nios2_qsys_0:reset_req, onchip_memory2_0:reset_req, rst_translator:reset_req_in]
-	wire         rst_controller_001_reset_out_reset;                           // rst_controller_001:reset_out -> [ball1_pos:reset_n, ball2_pos:reset_n, jtag_uart_0:rst_n, mm_interconnect_0:jtag_uart_0_reset_reset_bridge_in_reset_reset, new_pos_to_hw:reset_n, otg_hpi_address:reset_n, otg_hpi_cs:reset_n, otg_hpi_data:reset_n, otg_hpi_r:reset_n, otg_hpi_w:reset_n, p1_old_pos_to_sw:reset_n, p2_old_pos_to_sw:reset_n, power_angle:reset_n, sysid_qsys_0:reset_n, timer_0:reset_n, vsync:reset_n]
+	wire         rst_controller_001_reset_out_reset;                           // rst_controller_001:reset_out -> [ball1_pos:reset_n, ball2_pos:reset_n, game_turn:reset_n, jtag_uart_0:rst_n, mm_interconnect_0:jtag_uart_0_reset_reset_bridge_in_reset_reset, new_pos_to_hw:reset_n, otg_hpi_address:reset_n, otg_hpi_cs:reset_n, otg_hpi_data:reset_n, otg_hpi_r:reset_n, otg_hpi_w:reset_n, p1_old_pos_to_sw:reset_n, p2_old_pos_to_sw:reset_n, power_angle:reset_n, sysid_qsys_0:reset_n, timer_0:reset_n, vsync:reset_n]
 	wire         nios2_qsys_0_jtag_debug_module_reset_reset;                   // nios2_qsys_0:jtag_debug_module_resetrequest -> rst_controller_001:reset_in1
 	wire         rst_controller_002_reset_out_reset;                           // rst_controller_002:reset_out -> [mm_interconnect_0:sdram_reset_reset_bridge_in_reset_reset, sdram:reset_n]
 
@@ -175,6 +178,14 @@ module nios_system (
 		.address  (mm_interconnect_0_ball2_pos_s1_address),  //                  s1.address
 		.readdata (mm_interconnect_0_ball2_pos_s1_readdata), //                    .readdata
 		.in_port  (ball2_pos_export)                         // external_connection.export
+	);
+
+	nios_system_game_turn game_turn (
+		.clk      (clk_clk),                                 //                 clk.clk
+		.reset_n  (~rst_controller_001_reset_out_reset),     //               reset.reset_n
+		.address  (mm_interconnect_0_game_turn_s1_address),  //                  s1.address
+		.readdata (mm_interconnect_0_game_turn_s1_readdata), //                    .readdata
+		.in_port  (game_turn_export)                         // external_connection.export
 	);
 
 	nios_system_jtag_uart_0 jtag_uart_0 (
@@ -425,6 +436,8 @@ module nios_system (
 		.ball1_pos_s1_readdata                            (mm_interconnect_0_ball1_pos_s1_readdata),                      //                                           .readdata
 		.ball2_pos_s1_address                             (mm_interconnect_0_ball2_pos_s1_address),                       //                               ball2_pos_s1.address
 		.ball2_pos_s1_readdata                            (mm_interconnect_0_ball2_pos_s1_readdata),                      //                                           .readdata
+		.game_turn_s1_address                             (mm_interconnect_0_game_turn_s1_address),                       //                               game_turn_s1.address
+		.game_turn_s1_readdata                            (mm_interconnect_0_game_turn_s1_readdata),                      //                                           .readdata
 		.jtag_uart_0_avalon_jtag_slave_address            (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_address),      //              jtag_uart_0_avalon_jtag_slave.address
 		.jtag_uart_0_avalon_jtag_slave_write              (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_write),        //                                           .write
 		.jtag_uart_0_avalon_jtag_slave_read               (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_read),         //                                           .read

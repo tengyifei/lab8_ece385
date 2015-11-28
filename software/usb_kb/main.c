@@ -25,32 +25,41 @@
 #include "lcp_cmd.h"
 #include "lcp_data.h"
 
+#include <math.h>
 
 /* the addresses for my PIO ports */
 
-  	#define p1_old_pos_to_sw (volatile int*)  0x00000090 // the addresses pointing to the address of the p1 location
-  	#define p2_old_pos_to_sw (volatile int*)  0x00000060 // the addresses pointing to the address of the p2 location
-  	#define power_angle  	 (volatile int*)  0x00000080 // the address of the power_angle of p1 and p2
-  	#define vsync 			 (volatile char*)  0x00000070  // the address of the vsync
-  	#define ball1_pos 		 (volatile int*)  0x00000050
-  	#define ball2_pos 		 (volatile int*)  0x00000040
+  	#define p1_old_pos_to_sw (volatile int*)  0x000000a0 // the addresses pointing to the address of the p1 location
+  	#define p2_old_pos_to_sw (volatile int*)  0x00000070 // the addresses pointing to the address of the p2 location
+  	#define power_angle  	 (volatile int*)  0x00000090 // the address of the power_angle of p1 and p2
+  	#define vsync 			 (volatile char*) 0x00000080  // the address of the vsync
+  	#define ball1_pos 		 (volatile int*)  0x00000060
+  	#define ball2_pos 		 (volatile int*)  0x00000050
+  	#define game_turn_addr   (volatile int*)  0x00000040
 
-  	#define new_pos_to_hw    (int*)           0x000000a0 // the address of new address to hardware
-
-/* declaration and initialization ends */
-
-/* my cast function */
-
-  // int char2int(char* idx)
-  // {
-  // 	char temp;
-  // 	temp = *idx;
-  // 	if(*idx)
+  	#define new_pos_to_hw    (int*)           0x000000b0 // the address of new address to hardware
 
 
-  // }
+  	# define gravity_const   9.80
+  	# define delta_t         0.0166666666667
+  	# define power_scale      1
+  	# define ch1_x_size      16
+	# define ch1_y_size      24
+  	# define ch2_x_size      16
+	# define ch2_y_size      24
 
-/* my case function ends */
+ /* declaration and initialization ends */
+
+/* my dist function */
+
+double dist(double rival_x, double rival_y, double cur_x, double cur_y )
+{
+	return  sqrt(  (rival_x - cur_x) * (rival_x - cur_x)  +  (rival_y - cur_y) * (rival_y - cur_y) );
+}
+
+
+
+/* my dist function ends */
 
 
 
@@ -84,8 +93,23 @@ int main(void)
 	alt_u8 hot_plug_count;
 	alt_u16 code;
 
+/* my variable declaration */
 	int i,j;
 	char temp;
+	int game_turn;
+	int keycode_after_mask;
+	int ball1_x, ball1_y, ball2_x, ball2_y;
+	int ch1_x, ch1_y, ch2_x, ch2_y;
+	int wp_mode1, wp_mode2;
+	int angle1, angle2, power1,power2;
+	int vsync_sig;
+	double vx, vy;
+	int temp_x, temp_y;
+	int harm1, harm2;
+
+
+/* my variable declaration ends*/
+
 /* steps that I don't care much */
 	printf("USB keyboard setup...\n\n");
 
@@ -559,22 +583,175 @@ int main(void)
 
 		/* logics to calculate trajectory positiions */
 
+			// might have issue with double stroke case !!!!!!!!!!!!!!!!!!!!!!!!!!! will be take cared later
 
-		printf("p1_old_pos_to_sw: ");
+			keycode_after_mask = keycode & 0xff;
+
+			//attack by P1 is asserted: "J"
+			if ( *game_turn_addr == 1 && keycode_after_mask==13)
+			{
 
 
-			printf("%d",*p1_old_pos_to_sw);
 
-		printf("\n");
+				//first get info needed for calculation
+				ball1_x = (*ball1_pos) & 0x3ff ; // get the lowest 10 bits
+				ball1_y = ((*ball1_pos) >> 10) & 0x3ff; // get the [19:10] bits
+				//ball2_y = ((*ball2_pos) >> 10) & 0x3ff; // get the [19:10] bits
+				//ball2_x = (*ball2_pos) & 0x3ff ; // get the lowest 10 bits
+				temp_x = (int) (*p1_old_pos_to_sw) & 0x3ff;  // get the lowest 10 bits
+				temp_y = (int) ((*p1_old_pos_to_sw) >> 10) & 0x3ff; // get the [19:10] bits
+				ch2_x = (*p2_old_pos_to_sw) & 0x3ff; // get the lowest 10 bits
+				ch2_y = ((*p2_old_pos_to_sw) >> 10) & 0x3ff; // get the [19:10] bits
+				wp_mode1 = ((*ball1_pos) >> 20) & 1; // get [20]
+				power1 = (*power_angle) & 0xf ;   //get lowest four bits
+				angle1 = ((*power_angle) >> 4 ) & 0xf; // get [7:4]
+				power2 = ((*power_angle) >> 8 ) & 0xf; // get [11:8]
+				angle2 = ((*power_angle) >> 12 ) & 0xf; // get [15:12]
+				//game_turn = *gifame_turn_addr &  0x3; //get the LSB 2 bit
+				//vsync_sig = *vsync ; // could be removed
+
+			   	if(angle1 == 15)
+			   		angle1--; // so as to avoid shooting vertically, the range should be between 0-14 inclusive
+
+			    vx = power_scale * power1*cos(M_PI * (angle1 + 1) / 32);  // the inital vx and vy depending on the power and angle
+			    vy = -power_scale * power1*sin(M_PI * (angle1 + 1) / 32); // it is negative becuase downward is set to be the positve y direction
 
 
 
+			    // using two different calculate models depending on the actual value of weapon mode
+
+			    if(wp_mode1==0)
+			    {
+			    	// cannon ball, no rebounce
+					START_OF_MODE_1: ;
+
+
+					if( (int)(temp_x+ vx*delta_t) >= ch2_x && (int)(temp_x+ vx*delta_t) < (ch2_x+ ch2_x_size) && (int)(temp_y+ vy*delta_t)>= ch2_y && (int)(temp_y+ vy*delta_t)< (ch2_y + ch2_y_size) )
+				    {
+				    	// end_condition 1, it hits the rival
+				    	vy = vy + gravity_const* delta_t;
+				    	harm1 = 25 ; // full harm
+				    	temp_y = (int)(temp_y+ vy*delta_t);
+				    	*new_pos_to_hw = 0x40000000 + (harm1 << 20) + ( temp_y << 10) + temp_x;
+
+				    	printf("get to here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1\n\n\n\n\n");
+				    	while (*vsync != 1 ) ;  // wait for the next frame_clk, so that the value could be mainitained before
+						while (*vsync != 0 ) ;
+						while (*vsync != 1 ) ;
+						// jump out of the condition and proceed to get the next keyboard value
+
+						//clear the value of the output
+						*new_pos_to_hw = 0;
+						goto GET_NEXT_KEYBOARD;
+				    }
+				    // determine if the updated position is out of bound
+				    else if( (int)(temp_x+ vx*delta_t) >= 640 || (int)(temp_y+ vy*delta_t) < 0 || (int)(temp_y+ vy*delta_t) >= 480 )
+				    {
+				    	/* this is the end condition 2, should set the end_set1 signal back to hardware */
+				    	printf("get to here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!2\n\n\n\n\n");
+				    	// update the value of the address and vx vy, though will not be used
+				    	temp_x =  (int)(temp_x+ vx*delta_t) >= 640 ? 639 : (int)(temp_x+ vx*delta_t);
+
+				    	if ((int)(temp_y+ vy*delta_t) < 0)
+				    		temp_y = 0;
+				    	else if ((int)(temp_y+ vy*delta_t) >= 480)
+				    		temp_y = 479;
+				    	else
+				    		temp_y = (int)(temp_y+ vy*delta_t);
+
+				    	vy = vy + gravity_const* delta_t;
+
+				    	if(dist(temp_x,temp_y,ch2_x,ch2_y) <= 30.0)
+				    	{
+				    		harm1= (int) (dist(temp_x,temp_y,ch2_x,ch2_y)/ 30.0 * 25 );
+				    	}
+				    	else
+				    	{
+				    		harm1=0;
+				    	}
+
+				    	//update the value for the signals sent to hardware
+
+				    	*new_pos_to_hw = 0x40000000 + (harm1 << 20) + ( temp_y << 10) + temp_x;
+
+
+				    	while (*vsync != 1 ) ;  // wait for the next frame_clk, so that the value could be mainitained before
+						while (*vsync != 0 ) ;
+						while (*vsync != 1 ) ;
+						// jump out of the condition and proceed to get the next keyboard value
+
+						//clear the value of the output
+						*new_pos_to_hw = 0;
+						goto GET_NEXT_KEYBOARD;
+
+				    }
+				    else
+				    {
+				    	printf("get to here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!3\n\n\n\n\n");
+				    	// within the limit, update the x,y position and the vx vy, afterwards send back the new position
+				    	temp_x =  (int)(temp_x+ vx*delta_t);
+				    	temp_y = (int)(temp_y+ vy*delta_t);
+				    	vy = vy +gravity_const * delta_t;
+				    	while (*vsync != 1 ) ;  // wait for the next frame_clk, so that the value could be mainitained before
+						while (*vsync != 0 ) ;
+						while (*vsync != 1 ) ;
+						//clear the value of the output
+						*new_pos_to_hw = 0;
+						//while(1);
+						goto START_OF_MODE_1;
+
+				    }
+
+				}
+				else
+				{
+					// grenade
+					START_OF_MODE_2: ;
+
+
+				}
+
+
+						// need to add constraints on game turn !!!!!!!!!!!
+
+			}
+
+
+			/* --------------------- I am a separatrix of trajectory logic of P1 and P2 ----------------    */
+
+
+
+
+
+
+
+
+			//attack by P2 is asserte : space
+			 // if ( *game_turn_addr== 2 && keycode_after_mask==44)
+			 // {
+				// ball1_x = (*ball1_pos) & 0x3ff ; // get the lowest 10 bits
+				// ball1_y = ((*ball1_pos) >> 10) & 0x3ff; // get the [19:10] bits
+				// ball2_y = ((*ball2_pos) >> 10) & 0x3ff; // get the [19:10] bits
+				// ball2_x = (*ball2_pos) & 0x3ff ; // get the lowest 10 bits
+				// ch1_x = (*p1_old_pos_to_sw) & 0x3ff;  // get the lowest 10 bits
+				// ch1_y = ((*p1_old_pos_to_sw) >> 10) & 0x3ff; // get the [19:10] bits
+				// temp_x = ch2_x = (*p2_old_pos_to_sw) & 0x3ff; // get the lowest 10 bits
+				// temp_y = ch2_y = ((*p2_old_pos_to_sw) >> 10) & 0x3ff; // get the [19:10] bits
+				// wp_mode1 = ((*ball1_pos) >> 20) & 1; // get [20]
+				// power1 = (*power_angle) & 0xf ;   //get lowest four bits
+				// angle1 = ((*power_angle) >> 4 ) & 0xf; // get [7:4]
+				// power2 = ((*power_angle) >> 8 ) & 0xf; // get [11:8]
+				// angle2 = ((*power_angle) >> 12 ) & 0xf; // get [15:12]
+				// vsync_sig = *vsync ; // could be removed
+
+			 // }
 
 
 
 		/* trajectory calculation starts here  */
 
 
+		GET_NEXT_KEYBOARD: ;
 
 
 		usleep(200);//usleep(5000);

@@ -26,6 +26,7 @@
 		.sdram_wire_dqm          (<connected-to-sdram_wire_dqm>),          //                 .dqm
 		.sdram_wire_ras_n        (<connected-to-sdram_wire_ras_n>),        //                 .ras_n
 		.sdram_wire_we_n         (<connected-to-sdram_wire_we_n>),         //                 .we_n
-		.vsync_export            (<connected-to-vsync_export>)             //            vsync.export
+		.vsync_export            (<connected-to-vsync_export>),            //            vsync.export
+		.game_turn_export        (<connected-to-game_turn_export>)         //        game_turn.export
 	);
 

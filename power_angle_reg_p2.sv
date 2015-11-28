@@ -5,8 +5,26 @@ module power_angle_reg_p2 (input frame_clk, Reset, is_in_turn,
 
 	logic [3:0] power_sig, angle_sig;
 	
-	//d82:UP, d81:DOWN used for power
-	//d54:<, d55: >, used for angle adjustment
+	//d38:W, d34:S used for power
+	//d32:q, d8:e, used for angle adjustment
+	
+	logic [7:0] prev_1, prev_2; 
+	
+	always_ff @ (posedge frame_clk)
+	begin
+		prev_1 <= keycode;
+	
+	end
+	
+	always_ff @ (posedge frame_clk)
+	begin
+		prev_2 <= prev_1;
+	
+	end
+
+	
+	
+	
 	
 	always_ff @ (posedge frame_clk, posedge Reset)
 	begin
@@ -22,39 +40,67 @@ module power_angle_reg_p2 (input frame_clk, Reset, is_in_turn,
 		end
 		else if (keycode==8'd82)
 		begin
-			//power up
 			angle_sig <= angle_sig;
-			if(power_sig >=4'd7)
-				power_sig <= 4'd7;
+			if(prev_1==prev_2)
+			begin
+				power_sig <= power_sig;
+			end
 			else
-				power_sig <= power_sig +4'b1;
+			begin
+				//power up
+				if(power_sig >= 4'd14)
+					power_sig <= 4'd14;
+				else
+					power_sig <= power_sig +4'b1;
+			end
 		end
 		else if (keycode==8'd81)
 		begin
-			//power down
 			angle_sig <= angle_sig;
-			if(power_sig ==4'b0)
-				power_sig <= 4'b0;
-			else
-				power_sig <= power_sig -1'b1;
+			if(prev_1==prev_2)
+			begin
+				power_sig <= power_sig;
+			end
+			else 
+			begin
+				//power down
+				if(power_sig ==4'b0)
+					power_sig <= 4'b0;
+				else
+					power_sig <= power_sig -1'b1;
+			end
 		end 
 		else if (keycode == 8'd54)
 		begin
-			//angle up
 			power_sig <= power_sig;
-			if(angle_sig >=4'd7)
-				angle_sig <= 4'd7;
-			else
-				angle_sig <= angle_sig +4'b1;
+			if(prev_1==prev_2)
+			begin
+				angle_sig <= angle_sig;
+			end
+			else 
+			begin
+				//angle up
+				if(angle_sig >=4'd14)
+					angle_sig <= 4'd14;
+				else
+					angle_sig <= angle_sig +4'b1;
+			end
 		end
 		else if (keycode == 8'd55)
 		begin
-			//angle down
 			power_sig <= power_sig;
-			if(angle_sig ==4'b0)
-				angle_sig <= 4'b0;
-			else
-				angle_sig <= angle_sig -4'b1;
+			if(prev_1==prev_2)
+			begin
+				angle_sig <= angle_sig;
+			end
+			else 
+			begin
+				//angle down
+				if(angle_sig ==4'b0)
+					angle_sig <= 4'b0;
+				else
+					angle_sig <= angle_sig -4'b1;
+			end
 		end
 		else
 		begin

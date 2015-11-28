@@ -27,7 +27,8 @@
 			sdram_wire_dqm          : out   std_logic_vector(3 downto 0);                     -- dqm
 			sdram_wire_ras_n        : out   std_logic;                                        -- ras_n
 			sdram_wire_we_n         : out   std_logic;                                        -- we_n
-			vsync_export            : in    std_logic                     := 'X'              -- export
+			vsync_export            : in    std_logic                     := 'X';             -- export
+			game_turn_export        : in    std_logic_vector(1 downto 0)  := (others => 'X')  -- export
 		);
 	end component nios_system;
 
@@ -60,6 +61,7 @@
 			sdram_wire_dqm          => CONNECTED_TO_sdram_wire_dqm,          --                 .dqm
 			sdram_wire_ras_n        => CONNECTED_TO_sdram_wire_ras_n,        --                 .ras_n
 			sdram_wire_we_n         => CONNECTED_TO_sdram_wire_we_n,         --                 .we_n
-			vsync_export            => CONNECTED_TO_vsync_export             --            vsync.export
+			vsync_export            => CONNECTED_TO_vsync_export,            --            vsync.export
+			game_turn_export        => CONNECTED_TO_game_turn_export         --        game_turn.export
 		);
 

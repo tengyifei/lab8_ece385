@@ -3,6 +3,7 @@
 			ball1_pos_export        : in    std_logic_vector(20 downto 0) := (others => 'X'); -- export
 			ball2_pos_export        : in    std_logic_vector(20 downto 0) := (others => 'X'); -- export
 			clk_clk                 : in    std_logic                     := 'X';             -- clk
+			game_turn_export        : in    std_logic_vector(1 downto 0)  := (others => 'X'); -- export
 			key2_wire_export        : in    std_logic                     := 'X';             -- export
 			key3_wire_export        : in    std_logic                     := 'X';             -- export
 			keycode_export          : out   std_logic_vector(15 downto 0);                    -- export

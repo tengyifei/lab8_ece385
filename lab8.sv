@@ -45,6 +45,10 @@ module  lab8 		( input         CLOCK_50,
     assign {Reset_h}=~ (KEY[0]);  // The push buttons are active low
 	
 	 
+	 /************************change this!!!!!!*******************************/
+	 assign ball1sizesig =10'd4;
+	 assign ball2sizesig =10'd4;
+	 
 	 wire [1:0] hpi_addr;
 	 wire [15:0] hpi_data_in, hpi_data_out;
 	 wire hpi_r, hpi_w,hpi_cs;
@@ -99,7 +103,8 @@ module  lab8 		( input         CLOCK_50,
 	 nios_system nios_system(
 										 .clk_clk(Clk), 
 										 .new_pos_to_hw_export(new_pos_to_hw_wire),
-										 .vsync_export(vsync_export_wire),
+										 .vsync_export(vssig),
+										 .game_turn_export(game_turn_wire),
 										 .power_angle_export(power_angle_export_wire),
 										 .p2_old_pos_to_sw_export(p2_old_pos_to_sw_export_wire),
 										 .p1_old_pos_to_sw_export(p1_old_pos_to_sw_export_wire),
@@ -297,7 +302,7 @@ p2_weapon_state_machine p2_weapon(
 	 .ch2_sizeX(ch2sizesigX),
 	 .ch2_sizeY(ch2sizesigY),
 	 .health_p1(health_p1_wire), 
-	 .health_p2(health_p1_wire),
+	 .health_p2(health_p2_wire),
 	 .game_turn(game_turn_wire),
 	 .weapon_mode_p1(weapon_mode_p1_wire), 
 	 .weapon_mode_p2(weapon_mode_p2_wire),
@@ -316,8 +321,12 @@ p2_weapon_state_machine p2_weapon(
     HexDriver hex_inst_2 ({2'b0,game_turn_wire}, HEX2); // display weapon register
 	 HexDriver hex_inst_3 ({3'b0,restart_wire}, HEX3); // display weapon register
 	 
+	 HexDriver hex_inst_4 ( power_p1_wire , HEX4);  // p1 power
+	 HexDriver hex_inst_5 ( angle_p1_wire , HEX5); // p1 angle 
+	 HexDriver hex_inst_6 ( power_p2_wire , HEX6); // p2 power
+	 HexDriver hex_inst_7 ( angle_p2_wire , HEX7);  // p2 angle
 	 
 	 assign LEDR[0]=new_pos_to_hw_wire[30];//endset_1
 	 assign LEDR[1]=new_pos_to_hw_wire[31];//endset_2
-
+	assign LEDR[3] = weapon_display_p1_wire;
 endmodule
